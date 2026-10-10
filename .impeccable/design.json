@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-10T14:05:04.359Z",
+  "title": "Design System: Lokesh Prajapat Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Workshop Lime",
+        "tonalRamp": [
+          "oklch(15.00% 0.1598 122.57)",
+          "oklch(26.43% 0.1598 122.57)",
+          "oklch(37.86% 0.1598 122.57)",
+          "oklch(49.29% 0.1598 122.57)",
+          "oklch(60.71% 0.1598 122.57)",
+          "oklch(72.14% 0.1598 122.57)",
+          "oklch(83.57% 0.1598 122.57)",
+          "oklch(95.00% 0.1598 122.57)"
+        ]
+      },
+      "primary-hover": {
+        "role": "primary",
+        "displayName": "Light Lime",
+        "tonalRamp": [
+          "oklch(15.00% 0.1210 122.34)",
+          "oklch(26.43% 0.1210 122.34)",
+          "oklch(37.86% 0.1210 122.34)",
+          "oklch(49.29% 0.1210 122.34)",
+          "oklch(60.71% 0.1210 122.34)",
+          "oklch(72.14% 0.1210 122.34)",
+          "oklch(83.57% 0.1210 122.34)",
+          "oklch(95.00% 0.1210 122.34)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Midnight Navy",
+        "tonalRamp": [
+          "oklch(15.00% 0.0259 263.72)",
+          "oklch(26.43% 0.0259 263.72)",
+          "oklch(37.86% 0.0259 263.72)",
+          "oklch(49.29% 0.0259 263.72)",
+          "oklch(60.71% 0.0259 263.72)",
+          "oklch(72.14% 0.0259 263.72)",
+          "oklch(83.57% 0.0259 263.72)",
+          "oklch(95.00% 0.0259 263.72)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Panel Navy",
+        "tonalRamp": [
+          "oklch(15.00% 0.0298 261.32)",
+          "oklch(26.43% 0.0298 261.32)",
+          "oklch(37.86% 0.0298 261.32)",
+          "oklch(49.29% 0.0298 261.32)",
+          "oklch(60.71% 0.0298 261.32)",
+          "oklch(72.14% 0.0298 261.32)",
+          "oklch(83.57% 0.0298 261.32)",
+          "oklch(95.00% 0.0298 261.32)"
+        ]
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Raised Navy",
+        "tonalRamp": [
+          "oklch(15.00% 0.0317 258.31)",
+          "oklch(26.43% 0.0317 258.31)",
+          "oklch(37.86% 0.0317 258.31)",
+          "oklch(49.29% 0.0317 258.31)",
+          "oklch(60.71% 0.0317 258.31)",
+          "oklch(72.14% 0.0317 258.31)",
+          "oklch(83.57% 0.0317 258.31)",
+          "oklch(95.00% 0.0317 258.31)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Soft Chalk",
+        "tonalRamp": [
+          "oklch(15.00% 0.0110 123.46)",
+          "oklch(26.43% 0.0110 123.46)",
+          "oklch(37.86% 0.0110 123.46)",
+          "oklch(49.29% 0.0110 123.46)",
+          "oklch(60.71% 0.0110 123.46)",
+          "oklch(72.14% 0.0110 123.46)",
+          "oklch(83.57% 0.0110 123.46)",
+          "oklch(95.00% 0.0110 123.46)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Slate Mist",
+        "tonalRamp": [
+          "oklch(15.00% 0.0303 259.58)",
+          "oklch(26.43% 0.0303 259.58)",
+          "oklch(37.86% 0.0303 259.58)",
+          "oklch(49.29% 0.0303 259.58)",
+          "oklch(60.71% 0.0303 259.58)",
+          "oklch(72.14% 0.0303 259.58)",
+          "oklch(83.57% 0.0303 259.58)",
+          "oklch(95.00% 0.0303 259.58)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Navy Rule",
+        "tonalRamp": [
+          "oklch(15.00% 0.0316 259.70)",
+          "oklch(26.43% 0.0316 259.70)",
+          "oklch(37.86% 0.0316 259.70)",
+          "oklch(49.29% 0.0316 259.70)",
+          "oklch(60.71% 0.0316 259.70)",
+          "oklch(72.14% 0.0316 259.70)",
+          "oklch(83.57% 0.0316 259.70)",
+          "oklch(95.00% 0.0316 259.70)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Hero Display",
+        "purpose": "Two-line hero headline; responsive overrides are documented in Layout."
+      },
+      "headline": {
+        "displayName": "Section Headline",
+        "purpose": "Major section headings; local column-specific sizes remain in CSS."
+      },
+      "title": {
+        "displayName": "Content Title",
+        "purpose": "Project, expertise, and experience names."
+      },
+      "body": {
+        "displayName": "Reading Copy",
+        "purpose": "Base reading rhythm; content contexts select smaller or larger sizes."
+      },
+      "label": {
+        "displayName": "Metadata",
+        "purpose": "Actual metadata and compact controls; not an above-heading decorative label."
+      },
+      "code": {
+        "displayName": "Liquid Code",
+        "purpose": "Literal code and line numbers."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "control-transition",
+        "value": "0.2s ease",
+        "purpose": "Button color/lift, navigation color, and toast opacity/translation."
+      },
+      {
+        "name": "cover-transition",
+        "value": "0.35s cubic-bezier(.16,1,.3,1)",
+        "purpose": "Project identity scales to 1.045 on cover hover."
+      },
+      {
+        "name": "demo-reveal",
+        "value": "1s cubic-bezier(.16,1,.3,1)",
+        "purpose": "One-time clip reveal of the theme demonstration."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "none",
+        "purpose": "At prefers-reduced-motion: reduce, disable animation and transitions; use immediate anchor scrolling."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-desktop",
+        "value": "1100px",
+        "purpose": "Maximum width; reduce gutters and gaps."
+      },
+      {
+        "name": "tablet",
+        "value": "820px",
+        "purpose": "Maximum width; stack hero and contact; retain two project columns."
+      },
+      {
+        "name": "phone",
+        "value": "600px",
+        "purpose": "Maximum width; single-column content and button-controlled navigation."
+      },
+      {
+        "name": "wide",
+        "value": "1600px",
+        "purpose": "Minimum width; increase hero vertical padding."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Lime action with gentle lift on hover.",
+      "html": "<button class=\"ds-primary ds-focus\">Explore my work <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16M14 6l6 6-6 6\"/></svg></button>",
+      "css": ".ds-primary { font-family: \"Manrope Variable\", sans-serif; display: inline-flex; align-items: center; justify-content: center; gap: 22px; padding: 14px 21px; min-height: 50px; border: 0; border-radius: 8px; background: var(--accent, #d4f878); color: var(--background, #101622); font-size: 13px; font-weight: 750; cursor: pointer; transition: background .2s, transform .2s; } .ds-primary:hover { background: #e3ffa2; transform: translateY(-2px); } .ds-primary:disabled { cursor: not-allowed; opacity: .55; } .ds-focus:focus-visible { outline: 2px solid var(--accent, #d4f878); outline-offset: 5px; } @media (prefers-reduced-motion: reduce) { .ds-primary { transition: none; } }"
+    },
+    {
+      "name": "Outlined Contact",
+      "kind": "button",
+      "refersTo": "button-contact",
+      "description": "Compact lime outline action used in navigation.",
+      "html": "<a class=\"ds-contact ds-focus\" href=\"#contact\">Let’s talk <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 18 18 6M6 6h12v12\"/></svg></a>",
+      "css": ".ds-contact { font-family: \"Manrope Variable\", sans-serif; display: inline-flex; align-items: center; gap: 16px; padding: 10px 17px; border: 1px solid #5d6b47; border-radius: 8px; color: var(--accent, #d4f878); background: transparent; font-size: 13px; font-weight: 500; text-decoration: none; } .ds-contact:hover { background: #222f27; } .ds-focus:focus-visible { outline: 2px solid var(--accent, #d4f878); outline-offset: 5px; }"
+    },
+    {
+      "name": "Main Navigation",
+      "kind": "nav",
+      "description": "Quiet text links on the navy foundation.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Portfolio navigation\"><a class=\"ds-focus\" href=\"#work\">Work</a><a class=\"ds-focus\" href=\"#expertise\">Expertise</a><a class=\"ds-focus\" href=\"#experience\">Experience</a><a class=\"ds-focus\" href=\"#about\">About</a></nav>",
+      "css": ".ds-nav { font-family: \"Manrope Variable\", sans-serif; display: flex; align-items: center; flex-wrap: wrap; gap: 34px; padding: 20px; background: var(--background, #101622); font-size: 13px; font-weight: 500; } .ds-nav a { color: var(--muted, #a8b4c7); text-decoration: none; transition: color .2s; } .ds-nav a:hover { color: var(--foreground, #f1f4ec); } .ds-focus:focus-visible { outline: 2px solid var(--accent, #d4f878); outline-offset: 5px; } @media (prefers-reduced-motion: reduce) { .ds-nav a { transition: none; } }"
+    },
+    {
+      "name": "Project Filters",
+      "kind": "chip",
+      "refersTo": "filter",
+      "description": "Pressed state uses lime and a subtle green field.",
+      "html": "<div class=\"ds-filters\" aria-label=\"Filter projects\"><button class=\"ds-filter ds-focus\" aria-pressed=\"true\">All work</button><button class=\"ds-filter ds-focus\" aria-pressed=\"false\">Shopify</button><button class=\"ds-filter ds-focus\" aria-pressed=\"false\">WordPress</button></div>",
+      "css": ".ds-filters { display: flex; flex-wrap: wrap; gap: 8px; } .ds-filter { font-family: \"Manrope Variable\", sans-serif; padding: 9px 14px; background: transparent; border: 1px solid transparent; border-radius: 7px; font-size: 11px; color: var(--muted, #a8b4c7); cursor: pointer; } .ds-filter:hover { color: var(--foreground, #f1f4ec); background: var(--surface-raised, #1b2534); } .ds-filter[aria-pressed=\"true\"] { color: var(--accent, #d4f878); background: #233024; border-color: #48573b; } .ds-focus:focus-visible { outline: 2px solid var(--accent, #d4f878); outline-offset: 5px; }"
+    },
+    {
+      "name": "Project Tags",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Passive tags identify concrete technologies.",
+      "html": "<div class=\"ds-tags\"><span>Shopify Liquid</span><span>Custom themes</span><span>Responsive design</span></div>",
+      "css": ".ds-tags { font-family: \"Manrope Variable\", sans-serif; display: flex; flex-wrap: wrap; gap: 7px; } .ds-tags span { padding: 4px 9px; font-size: 11px; color: #b6c0d0; background: #1b2533; border-radius: 5px; }"
+    },
+    {
+      "name": "Illustrative Project Cover",
+      "kind": "card",
+      "refersTo": "project-cover",
+      "description": "Typographic identity with an explicit illustrative label.",
+      "html": "<button class=\"ds-cover ds-focus\" aria-label=\"View Today project details\"><span class=\"ds-cover-meta\">Shopify / Lifestyle</span><span class=\"ds-cover-brand\">today.<span class=\"ds-cover-rule\"></span></span><span class=\"ds-cover-footer\">Illustrative project cover<span class=\"ds-cover-arrow\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 18 18 6M6 6h12v12\"/></svg></span></span></button>",
+      "css": ".ds-cover { font-family: \"Manrope Variable\", sans-serif; width: 100%; min-width: 0; height: 292px; border: 0; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; padding: 23px 25px 18px; overflow: hidden; background: #c7dcd4; color: #30483d; cursor: pointer; } .ds-cover-meta { font-size: 11px; opacity: .85; } .ds-cover-brand { display: flex; flex-direction: column; align-items: center; font-size: 59px; line-height: 1.05; letter-spacing: -.04em; font-weight: 650; transition: transform .35s cubic-bezier(.16,1,.3,1); } .ds-cover:hover .ds-cover-brand { transform: scale(1.045); } .ds-cover-rule { margin-top: 16px; width: 45px; height: 2px; background: #496456; } .ds-cover-footer { display: flex; align-items: end; justify-content: space-between; font-size: 11px; opacity: .85; } .ds-cover-arrow { width: 35px; height: 35px; border: 1px solid currentColor; border-radius: 50%; display: grid; place-items: center; } .ds-cover-arrow svg { width: 16px; height: 16px; } .ds-focus:focus-visible { outline: 2px solid var(--accent, #d4f878); outline-offset: 5px; } @media (prefers-reduced-motion: reduce) { .ds-cover-brand { transition: none; } }"
+    },
+    {
+      "name": "Theme Editor Panel",
+      "kind": "custom",
+      "refersTo": "theme-panel",
+      "description": "Navy editor with selected lime tab and monospace code.",
+      "html": "<div class=\"ds-editor\"><div class=\"ds-editor-top\">custom-theme / featured-product</div><div class=\"ds-editor-tabs\" role=\"tablist\" aria-label=\"Theme demonstration\"><button class=\"ds-focus\" role=\"tab\" aria-selected=\"true\">Liquid code</button><button class=\"ds-focus\" role=\"tab\" aria-selected=\"false\">Storefront preview</button></div><div class=\"ds-editor-code\"><code><span>{% comment %}</span><br>A little Liquid. A lot of possibility.<br><span>{% endcomment %}</span><br><br>&lt;h2&gt;{{ product.title }}&lt;/h2&gt;</code></div><div class=\"ds-editor-footer\">Shopify Liquid · Built with purpose.</div></div>",
+      "css": ".ds-editor { font-family: \"Manrope Variable\", sans-serif; border: 1px solid #374152; border-radius: var(--radius, 14px); background: var(--surface, #151d2b); color: var(--foreground, #f1f4ec); overflow: hidden; } .ds-editor-top { height: 48px; display: flex; align-items: center; padding-inline: 17px; font-size: 10px; color: #a4b0c3; border-bottom: 1px solid var(--line, #2c3646); } .ds-editor-tabs { display: flex; gap: 18px; padding-inline: 20px; border-bottom: 1px solid var(--line, #2c3646); } .ds-editor-tabs button { font-family: \"Manrope Variable\", sans-serif; background: none; border: 0; padding: 12px 1px; font-size: 10px; color: var(--muted, #a8b4c7); cursor: pointer; position: relative; } .ds-editor-tabs button:hover { color: var(--foreground, #f1f4ec); } .ds-editor-tabs button[aria-selected=\"true\"] { color: var(--accent, #d4f878); } .ds-editor-tabs button[aria-selected=\"true\"]::after { content: \"\"; height: 2px; background: var(--accent, #d4f878); position: absolute; bottom: -1px; left: 0; right: 0; } .ds-editor-code { padding: 24px 20px; overflow-x: auto; } .ds-editor-code code { font: 10px/1.65 Consolas, monospace; white-space: nowrap; color: #d4dce6; } .ds-editor-code span { color: #c1d596; } .ds-editor-footer { border-top: 1px solid var(--line, #2c3646); padding: 8px 18px 17px; font-size: 9px; color: #9eacc0; } .ds-focus:focus-visible { outline: 2px solid var(--accent, #d4f878); outline-offset: 5px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Developer Workshop & Lookbook",
+    "overview": "This name describes the implementation direction: precise developer details paired with the spacious typography and composed color fields of a brand lookbook. It is descriptive language for the shipped system. The durable user commitments are dark navy, lime, and a modern developer style.\n\nThe system is calm, confident, and content-led. Large headings anchor generous sections; supporting copy and fine rules create a quieter layer. Controls are compact and explicit. The palette stays consistent around the content while illustrative project covers can carry their own brand treatments.",
+    "keyCharacteristics": [
+      "Dark navy layers with lime actions and emphasis.",
+      "Manrope typography with tight display tracking and relaxed body leading.",
+      "Flat surfaces, fine borders, and gently rounded controls.",
+      "Spacious desktop columns that become readable mobile stacks.",
+      "Restrained interaction motion with reduced-motion support."
+    ],
+    "rules": [
+      {
+        "name": "The Lime Signal Rule",
+        "body": "Use lime for actions, selected states, and deliberate text emphasis, following the existing interface's hierarchy.",
+        "section": "colors"
+      },
+      {
+        "name": "The Heading First Rule",
+        "body": "Major sections begin directly with their heading. Put useful explanation below the heading and keep metadata attached to the item it describes.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "Convey resting depth with color, borders, and overlap, as the shipped components do.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the dark navy foundation and lime action hierarchy.",
+      "Do start major sections with their heading and place useful explanation below it.",
+      "Do retain generous leading for reading copy and the implemented mobile stacking behavior.",
+      "Do show keyboard focus and respect reduced-motion preferences.",
+      "Do label illustrative covers and storefront content honestly."
+    ],
+    "donts": [
+      "Don't turn project-cover colors or typefaces into competing global brand accents.",
+      "Don't add shadows to the existing flat surface vocabulary without an intentional system change.",
+      "Don't replace actual project metadata with decorative section labels.",
+      "Don't present illustrative artwork as a supplied screenshot or a live client storefront."
+    ]
+  }
+}
