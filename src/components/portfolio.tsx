@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { email, linkedin, projects, expertise, experience } from "@/lib/content";
+import { useRef, useState, useEffect } from "react";
+import { email, linkedin, medium, projects, expertise, experience, initialStories, mediumFeedUrl, type MediumStory } from "@/lib/content";
 
 type IconName = "arrow" | "diagonal" | "download" | "mail" | "location" | "close" | "menu" | "copy" | "check" | "code";
 function Icon({ name, className = "" }: { name: IconName; className?: string }) {
@@ -49,8 +49,44 @@ export default function Portfolio() {
   const [filter, setFilter] = useState("All work");
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
   const [copyStatus, setCopyStatus] = useState("");
+  const [stories, setStories] = useState<MediumStory[]>(initialStories);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const statusTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(mediumFeedUrl)}`)
+      .then(res => (res.ok ? res.json() : Promise.reject()))
+      .then(data => {
+        if (!isMounted || !data?.contents) return;
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+        const items = Array.from(xmlDoc.querySelectorAll("item"));
+        if (items.length === 0) return;
+        const fetched: MediumStory[] = items.slice(0, 4).map(item => {
+          const title = (item.querySelector("title")?.textContent || "").replace(/^<!\[CDATA\[|\]\]>$/g, "");
+          const link = (item.querySelector("link")?.textContent || "").split("?")[0];
+          const pubDateRaw = item.querySelector("pubDate")?.textContent || "";
+          const pubDate = pubDateRaw ? new Date(pubDateRaw).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "";
+          const categories = Array.from(item.querySelectorAll("category"))
+            .map(c => (c.textContent || "").replace(/^<!\[CDATA\[|\]\]>$/g, ""))
+            .filter(Boolean)
+            .slice(0, 2);
+          const rawContent = item.querySelector("encoded")?.textContent || item.querySelector("description")?.textContent || "";
+          const snippet = rawContent.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160) + "...";
+          return { title, link, pubDate, categories, snippet };
+        });
+        if (fetched.length > 0) {
+          setStories(fetched);
+        }
+      })
+      .catch(() => {
+        // Fallback silently remains active
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   function openProject(project: (typeof projects)[number]) {
     setSelectedProject(project);
@@ -68,7 +104,13 @@ export default function Portfolio() {
     statusTimer.current = setTimeout(() => setCopyStatus(""), 4500);
   }
 
-  const nav = [{ label: "Work", id: "work" }, { label: "Expertise", id: "expertise" }, { label: "Experience", id: "experience" }, { label: "About", id: "about" }];
+  const nav = [
+    { label: "Work", id: "work" },
+    { label: "Writing", id: "writing" },
+    { label: "Expertise", id: "expertise" },
+    { label: "Experience", id: "experience" },
+    { label: "About", id: "about" },
+  ];
 
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
@@ -88,7 +130,29 @@ export default function Portfolio() {
 
       <section className="work-section container section" id="work" aria-labelledby="work-heading">
         <div className="section-heading"><div><h2 id="work-heading">Selected work<span>.</span></h2><p>A few brands I’ve helped bring to life online.</p></div><div className="filters" aria-label="Filter projects">{["All work", "Shopify", "WordPress"].map(item => <button key={item} aria-pressed={filter === item} onClick={() => setFilter(item)}>{item}</button>)}</div></div>
-        <div className="project-grid">{projects.filter(project => filter === "All work" || project.category === filter).map(project => <article className="project" key={project.name}><button className={`project-cover ${project.style}`} aria-label={`View ${project.name} project details`} onClick={() => openProject(project)}><span className="cover-platform">{project.category} / {project.industry}</span><div className="cover-brand">{project.style === "milano" && <span className="milano-mark">m</span>}{project.style === "riders" && <Icon name="code" />}<span>{project.short}</span>{project.style === "milano" && <small>WIGS COLLECTION</small>}{project.style === "proteger" && <small>DAILY</small>}{project.style === "today" && <span className="today-rule" />}</div><span className="cover-footer">Illustrative project cover<span className="cover-arrow"><Icon name="diagonal" /></span></span></button><div className="project-title"><h3><button onClick={() => openProject(project)}>{project.name}</button></h3><button className="project-open" onClick={() => openProject(project)} aria-label={`Read about ${project.name}`}><Icon name="diagonal" /></button></div><p>{project.summary}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></article>)}</div>
+        <div className="project-grid">{projects.filter(project => filter === "All work" || project.category === filter).map(project => <article className="project" key={project.name}><button className={`project-cover ${project.style}`} aria-label={`View ${project.name} project details`} onClick={() => openProject(project)}><span className="cover-platform">{project.category} / {project.industry}</span><div className="cover-brand">{project.style === "milano" && <span className="milano-mark">m</span>}{project.style === "riders" && <Icon name="code" />}<span>{project.short}</span>{project.style === "milano" && <small>WIGS COLLECTION</small>}{project.style === "proteger" && <small>DAILY</small>}{project.style === "today" && <span className="today-rule" />}{project.style === "inspire" && <small>COMMUNITIES</small>}{project.style === "mywall" && <small>WALLPAPER STUDIO</small>}{project.style === "vitaliving" && <small>HEALTH & WELLNESS</small>}{project.style === "pinkpigs" && <small>GIFTS THAT GIVE BACK</small>}{project.style === "eves" && <small>NEW YORK INTIMATES</small>}{project.style === "littlebones" && <small>PEDIATRIC CLINIC</small>}</div><span className="cover-footer">Illustrative project cover<span className="cover-arrow"><Icon name="diagonal" /></span></span></button><div className="project-title"><h3><button onClick={() => openProject(project)}>{project.name}</button></h3>{project.url ? <a className="project-open" href={project.url} target="_blank" rel="noreferrer" aria-label={`Visit live website for ${project.name}`}><Icon name="diagonal" /></a> : <button className="project-open" onClick={() => openProject(project)} aria-label={`Read about ${project.name}`}><Icon name="diagonal" /></button>}</div><p>{project.summary}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-actions"><button className="project-details-btn" onClick={() => openProject(project)}>View details</button>{project.url && <a className="project-live-link" href={project.url} target="_blank" rel="noreferrer">Visit live site <Icon name="diagonal" /></a>}</div></article>)}</div>
+      </section>
+
+      <section className="writing-section section container" id="writing" aria-labelledby="writing-heading">
+        <div className="section-heading">
+          <div><h2 id="writing-heading">Writing & stories<span>.</span></h2><p>Engineering insights, Next.js guides, and clean code patterns.</p></div>
+          <a className="resume-link" href={medium} target="_blank" rel="noreferrer">All stories on Medium <Icon name="diagonal" /></a>
+        </div>
+        <div className="stories-grid">
+          {stories.map(story => (
+            <article className="story-card" key={story.link || story.title}>
+              <div className="story-meta">
+                <span className="story-date">{story.pubDate}</span>
+                <div className="story-tags">
+                  {story.categories.map(cat => <span key={cat}>#{cat}</span>)}
+                </div>
+              </div>
+              <h3><a href={story.link} target="_blank" rel="noreferrer">{story.title}</a></h3>
+              <p>{story.snippet}</p>
+              <a className="story-read" href={story.link} target="_blank" rel="noreferrer">Read on Medium <Icon name="diagonal" /></a>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="expertise-section section" id="expertise" aria-labelledby="expertise-heading"><div className="container expertise-layout"><div className="expertise-intro"><h2 id="expertise-heading">Good design.<br />Solid foundations<span>.</span></h2><p>I connect the details that make a storefront feel effortless—from the first impression to the final interaction.</p><a href="#contact" className="text-link">Let’s build something <Icon name="arrow" /></a></div><div className="expertise-list">{expertise.map(item => <article key={item.name}><h3>{item.name}</h3><p>{item.description}</p><div className="skill-list">{item.skills.map(skill => <span key={skill}>{skill}</span>)}</div></article>)}</div></div></section>
@@ -97,14 +161,14 @@ export default function Portfolio() {
 
       <section className="about-section section container" id="about" aria-labelledby="about-heading"><div className="about-art" aria-hidden="true"><span>l<span className="art-period">.</span></span><div>Curiosity in the process.<br />Care in the details.</div></div><div className="about-copy"><h2 id="about-heading">A developer with<br />an eye for the details<span>.</span></h2><p>Hi, I’m Lokesh. Based in Indore, I specialize in turning ideas into polished ecommerce experiences. My work brings together Shopify development, responsive design, and a focus on performance.</p><p>I enjoy solving the small, tricky problems that make a big difference—whether that’s a custom Liquid feature, a smoother product page, or a carefully planned store migration.</p><div className="education"><h3>Education</h3><div><strong>B.Sc. in Mathematics</strong><span>Govt. N.S.P. Science College, Indore</span><small>2018 — 2022</small></div><div><strong>Web Design Certificate</strong><span>Virtual Voyages College, Indore</span><small>2018 — 2019</small></div></div></div></section>
 
-      <section className="contact-section" id="contact" aria-labelledby="contact-heading"><div className="container contact-inner"><div><h2 id="contact-heading">Your next store,<br />built with care<span>.</span></h2><p>Have a project in mind or a role that could be a good fit?<br />Let’s start with a conversation.</p><a href={`mailto:${email}`} className="button button-primary">Get in touch <Icon name="diagonal" /></a></div><div className="contact-details"><span className="contact-label">Say hello</span><div className="email-row"><a href={`mailto:${email}`}>{email}</a><button onClick={copyEmail} aria-label="Copy email address"><Icon name={copyStatus.startsWith("Email copied") ? "check" : "copy"} /></button></div><a className="contact-phone" href="tel:+918120805721">+91 8120 805 721</a><a className="linkedin-link" href={linkedin} target="_blank" rel="noreferrer">Find me on LinkedIn <Icon name="diagonal" /></a><div className="contact-location"><Icon name="location" /><span>Indore, Madhya Pradesh, India</span></div></div></div></section>
+      <section className="contact-section" id="contact" aria-labelledby="contact-heading"><div className="container contact-inner"><div><h2 id="contact-heading">Your next store,<br />built with care<span>.</span></h2><p>Have a project in mind or a role that could be a good fit?<br />Let’s start with a conversation.</p><a href={`mailto:${email}`} className="button button-primary">Get in touch <Icon name="diagonal" /></a></div><div className="contact-details"><span className="contact-label">Say hello</span><div className="email-row"><a href={`mailto:${email}`}>{email}</a><button onClick={copyEmail} aria-label="Copy email address"><Icon name={copyStatus.startsWith("Email copied") ? "check" : "copy"} /></button></div><a className="contact-phone" href="tel:+918120805721">+91 8120 805 721</a><div className="contact-socials"><a className="linkedin-link" href={linkedin} target="_blank" rel="noreferrer">Find me on LinkedIn <Icon name="diagonal" /></a><a className="medium-link" href={medium} target="_blank" rel="noreferrer">Read on Medium <Icon name="diagonal" /></a></div><div className="contact-location"><Icon name="location" /><span>Indore, Madhya Pradesh, India</span></div></div></div></section>
     </main>
 
     <footer className="site-footer container"><a href="#" className="wordmark">lokesh<span>.</span></a><p>© {new Date().getFullYear()} Lokesh Prajapat</p><a href="#main" className="back-top">Back to top <Icon name="arrow" /></a></footer>
     <div className={`toast ${copyStatus ? "visible" : ""}`} role="status" aria-live="polite">{copyStatus}</div>
 
     <dialog ref={dialogRef} className="project-dialog" aria-labelledby="project-dialog-title" onClick={event => { if (event.target === event.currentTarget) dialogRef.current?.close(); }}>
-      {selectedProject && <div className="dialog-inner"><button className="dialog-close" aria-label="Close project details" onClick={() => dialogRef.current?.close()}><Icon name="close" /></button><h2 id="project-dialog-title">{selectedProject.name}</h2><span className="dialog-category">{selectedProject.category} · {selectedProject.industry}</span><p className="dialog-summary">{selectedProject.summary}</p><h3>My contribution</h3><ul>{selectedProject.details.map(detail => <li key={detail}>{detail}</li>)}</ul><div className="project-tags">{selectedProject.tags.map(tag => <span key={tag}>{tag}</span>)}</div><a className="button button-primary" href={`mailto:${email}?subject=${encodeURIComponent(`Let’s discuss a project like ${selectedProject.name}`)}`}>Discuss a similar project <Icon name="arrow" /></a></div>}
+      {selectedProject && <div className="dialog-inner"><button className="dialog-close" aria-label="Close project details" onClick={() => dialogRef.current?.close()}><Icon name="close" /></button><h2 id="project-dialog-title">{selectedProject.name}</h2><span className="dialog-category">{selectedProject.category} · {selectedProject.industry}</span><p className="dialog-summary">{selectedProject.summary}</p><h3>My contribution</h3><ul>{selectedProject.details.map(detail => <li key={detail}>{detail}</li>)}</ul><div className="project-tags">{selectedProject.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="dialog-actions">{selectedProject.url && <a className="button button-primary" href={selectedProject.url} target="_blank" rel="noreferrer">Visit live store <Icon name="diagonal" /></a>}<a className="button button-outline" href={`mailto:${email}?subject=${encodeURIComponent(`Let’s discuss a project like ${selectedProject.name}`)}`}>Discuss a similar project <Icon name="arrow" /></a></div></div>}
     </dialog>
   </>;
 }
