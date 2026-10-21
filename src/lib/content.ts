@@ -115,6 +115,8 @@ export const experience = [
   { role: "Shopify Web Trainee", company: "AiTrillion Pvt. Ltd.", dates: "Aug 2021 — Mar 2022", location: "Indore, India", points: ["Trained in Shopify theme customization, Liquid scripting and store setup.", "Supported theme builds, app integrations and UI/UX improvements on real client projects.", "Strengthened frontend development, responsive design and SEO fundamentals through hands-on work."] },
 ];
 
+import mediumStoriesData from "./medium-stories.json";
+
 export const mediumFeedUrl = "https://medium.com/feed/@lokesh-prajapati";
 
 export interface MediumStory {
@@ -125,33 +127,35 @@ export interface MediumStory {
   snippet: string;
 }
 
-export const initialStories: MediumStory[] = [
-  {
-    title: "Will AI Replace Developers? A Brutally Honest 5-Year Forecast (2026–2031)",
-    link: "https://javascript.plainenglish.io/will-ai-replace-developers-a-brutally-honest-5-year-forecast-2026-2031-ce579886bce0",
-    pubDate: "Dec 2025",
-    categories: ["AI & Engineering", "Future of Code"],
-    snippet: "AI is evolving faster than any technology in human history. Developers are the first ones feeling the impact. A realistic look at how software roles are changing.",
-  },
-  {
-    title: "Use Git Like a Senior Engineer (The Only Guide You’ll Ever Need)",
-    link: "https://javascript.plainenglish.io/use-git-like-a-senior-engineer-the-only-guide-youll-ever-need-d245204ddd33",
-    pubDate: "Dec 2025",
-    categories: ["Git & Workflow", "Best Practices"],
-    snippet: "Git is one of those tools every developer uses — but only a few truly master. Senior engineers don’t just 'push and pull'; they use Git strategically for collaboration.",
-  },
-  {
-    title: "10 Ultimate JavaScript Clean Code Patterns Every Developer Needs to Know",
-    link: "https://javascript.plainenglish.io/10-ultimate-javascript-clean-code-patterns-every-developer-needs-to-know-f4acad6e2a25",
-    pubDate: "Sep 2025",
-    categories: ["JavaScript", "Clean Code"],
-    snippet: "Most developers can make code work. But great developers write code that others love reading and maintaining. Key patterns for modern JavaScript.",
-  },
-  {
-    title: "The Ultimate Guide to Building & Deploying with Vercel (For React & Next.js Devs)",
-    link: "https://javascript.plainenglish.io/day-44-the-ultimate-guide-to-building-deploying-with-vercel-for-react-next-js-devs-278fc7258ab9",
-    pubDate: "Jun 2025",
-    categories: ["Next.js", "Deployment"],
-    snippet: "Learn how to build, optimize, and deploy your full-fledged React and Next.js applications seamlessly using modern Vercel features.",
-  },
-];
+export const initialStories: MediumStory[] = (mediumStoriesData as MediumStory[]).length > 0
+  ? (mediumStoriesData as MediumStory[])
+  : [
+      {
+        title: "Shopify Liquid Tutorial: How Shopify Themes Render HTML with JavaScript and APIs",
+        link: "https://javascript.plainenglish.io/shopify-liquid-tutorial-how-shopify-themes-render-html-with-javascript-and-apis-50b2f7b40f86",
+        pubDate: "Oct 2026",
+        categories: ["Shopify Liquid", "Ecommerce"],
+        snippet: "Understanding Shopify’s rendering pipeline, debugging common theme issues, and building dynamic storefront experiences without unnecessary page reloads.",
+      },
+      {
+        title: "Will AI Replace Developers? A Brutally Honest 5-Year Forecast (2026–2031)",
+        link: "https://javascript.plainenglish.io/will-ai-replace-developers-a-brutally-honest-5-year-forecast-2026-2031-ce579886bce0",
+        pubDate: "Dec 2025",
+        categories: ["AI & Engineering", "Future of Code"],
+        snippet: "AI is evolving faster than any technology in human history. Developers are the first ones feeling the impact. A realistic look at how software roles are changing.",
+      },
+      {
+        title: "Use Git Like a Senior Engineer (The Only Guide You’ll Ever Need)",
+        link: "https://javascript.plainenglish.io/use-git-like-a-senior-engineer-the-only-guide-youll-ever-need-d245204ddd33",
+        pubDate: "Dec 2025",
+        categories: ["Git & Workflow", "Best Practices"],
+        snippet: "Git is one of those tools every developer uses — but only a few truly master. Senior engineers don’t just 'push and pull'; they use Git strategically for collaboration.",
+      },
+      {
+        title: "10 Ultimate JavaScript Clean Code Patterns Every Developer Needs to Know",
+        link: "https://javascript.plainenglish.io/10-ultimate-javascript-clean-code-patterns-every-developer-needs-to-know-f4acad6e2a25",
+        pubDate: "Sep 2025",
+        categories: ["JavaScript", "Clean Code"],
+        snippet: "Most developers can make code work. But great developers write code that others love reading and maintaining. Key patterns for modern JavaScript.",
+      },
+    ];

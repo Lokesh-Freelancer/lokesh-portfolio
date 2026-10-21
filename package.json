@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
+    "predev": "node scripts/fetch-medium.mjs",
     "build": "next build",
+    "prebuild": "node scripts/fetch-medium.mjs",
+    "sync-medium": "node scripts/fetch-medium.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

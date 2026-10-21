@@ -3,7 +3,7 @@ import "@fontsource-variable/manrope";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lokesh-prajapat-portfolio.softinator.chatgpt.site"),
+  metadataBase: new URL("https://dev-lokeshprajapat.vercel.app"),
   title: "Lokesh Prajapat | Senior Shopify Web Developer",
   description: "Custom Shopify themes, Liquid development, store migrations and performance optimization. Explore the work of Lokesh Prajapat, a Senior Shopify Web Developer in Indore, India.",
   openGraph: {

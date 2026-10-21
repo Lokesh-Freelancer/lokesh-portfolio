@@ -55,7 +55,12 @@ export default function Portfolio() {
 
   useEffect(() => {
     let isMounted = true;
-    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(mediumFeedUrl)}`)
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(mediumFeedUrl)}`, {
+      signal: controller.signal,
+    })
       .then(res => (res.ok ? res.json() : Promise.reject()))
       .then(data => {
         if (!isMounted || !data?.contents) return;
@@ -63,7 +68,7 @@ export default function Portfolio() {
         const xmlDoc = parser.parseFromString(data.contents, "text/xml");
         const items = Array.from(xmlDoc.querySelectorAll("item"));
         if (items.length === 0) return;
-        const fetched: MediumStory[] = items.slice(0, 4).map(item => {
+        const fetched: MediumStory[] = items.slice(0, 6).map(item => {
           const title = (item.querySelector("title")?.textContent || "").replace(/^<!\[CDATA\[|\]\]>$/g, "");
           const link = (item.querySelector("link")?.textContent || "").split("?")[0];
           const pubDateRaw = item.querySelector("pubDate")?.textContent || "";
@@ -81,10 +86,12 @@ export default function Portfolio() {
         }
       })
       .catch(() => {
-        // Fallback silently remains active
+        // Fallback remains active seamlessly
       });
     return () => {
       isMounted = false;
+      clearTimeout(timeoutId);
+      controller.abort();
     };
   }, []);
 
