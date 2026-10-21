@@ -160,8 +160,14 @@ p { color: var(--muted); }
 .littlebones { background: #d7e8ea; color: #1e3f42; }
 .littlebones .cover-brand > span { font-size: 38px; font-weight: 700; letter-spacing: -.035em; }
 .littlebones .cover-brand > small { letter-spacing: .24em; margin-top: 10px; font-weight: 600; color: #356266; }
-.project-title { display: flex; align-items: center; justify-content: space-between; margin-top: 21px; gap: 10px; }
+.project-metric-row { margin-top: 16px; display: flex; align-items: center; }
+.project-metric-pill { display: inline-flex; align-items: center; gap: 7px; background: rgba(212, 248, 120, 0.08); border: 1px solid rgba(212, 248, 120, 0.22); color: var(--accent); padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 650; letter-spacing: -.01em; }
+.metric-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px var(--accent); flex-shrink: 0; }
+.dialog-metric-pill { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; background: rgba(212, 248, 120, 0.08); border: 1px solid rgba(212, 248, 120, 0.25); color: var(--accent); padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.dialog-metric-pill strong { color: #f1f4ec; font-weight: 700; margin-left: 3px; }
+.project-title { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 10px; }
 .project-title h3 { font-size: 18px; }
+
 .project-title h3 button { background: none; border: 0; padding: 0; text-align: left; font-weight: inherit; letter-spacing: inherit; }
 .project-title h3 button:hover { color: var(--accent); }
 .project-open { background: none; border: 0; padding: 6px; color: var(--muted); }
