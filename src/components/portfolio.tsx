@@ -56,38 +56,18 @@ export default function Portfolio() {
   useEffect(() => {
     let isMounted = true;
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000);
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
 
-    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(mediumFeedUrl)}`, {
-      signal: controller.signal,
-    })
+    fetch("/api/medium/", { signal: controller.signal })
       .then(res => (res.ok ? res.json() : Promise.reject()))
-      .then(data => {
-        if (!isMounted || !data?.contents) return;
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data.contents, "text/xml");
-        const items = Array.from(xmlDoc.querySelectorAll("item"));
-        if (items.length === 0) return;
-        const fetched: MediumStory[] = items.slice(0, 6).map(item => {
-          const title = (item.querySelector("title")?.textContent || "").replace(/^<!\[CDATA\[|\]\]>$/g, "");
-          const link = (item.querySelector("link")?.textContent || "").split("?")[0];
-          const pubDateRaw = item.querySelector("pubDate")?.textContent || "";
-          const pubDate = pubDateRaw ? new Date(pubDateRaw).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "";
-          const categories = Array.from(item.querySelectorAll("category"))
-            .map(c => (c.textContent || "").replace(/^<!\[CDATA\[|\]\]>$/g, ""))
-            .filter(Boolean)
-            .slice(0, 2);
-          const rawContent = item.querySelector("encoded")?.textContent || item.querySelector("description")?.textContent || "";
-          const snippet = rawContent.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 160) + "...";
-          return { title, link, pubDate, categories, snippet };
-        });
-        if (fetched.length > 0) {
-          setStories(fetched);
-        }
+      .then((data: MediumStory[]) => {
+        if (!isMounted || !Array.isArray(data) || data.length === 0) return;
+        setStories(data);
       })
       .catch(() => {
-        // Fallback remains active seamlessly
+        // Fallback to pre-built initialStories remains active seamlessly
       });
+
     return () => {
       isMounted = false;
       clearTimeout(timeoutId);
