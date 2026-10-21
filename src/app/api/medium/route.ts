@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import mediumStories from "@/lib/medium-stories.json";
 
 export const revalidate = 1800; // Cache on Vercel CDN for 30 minutes
 
@@ -6,14 +7,19 @@ export async function GET() {
   try {
     const res = await fetch("https://medium.com/feed/@lokesh-prajapati", {
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         Accept: "application/rss+xml, application/xml, text/xml",
       },
       next: { revalidate: 1800 },
     });
 
     if (!res.ok) {
-      throw new Error(`Medium returned status ${res.status}`);
+      return NextResponse.json(mediumStories, {
+        headers: {
+          "Cache-Control": "public, s-maxage=1800, stale-while-revalidate=86400",
+        },
+      });
     }
 
     const xml = await res.text();
@@ -60,17 +66,16 @@ export async function GET() {
       };
     });
 
-    return NextResponse.json(stories, {
+    return NextResponse.json(stories.length > 0 ? stories : mediumStories, {
       headers: {
         "Cache-Control": "public, s-maxage=1800, stale-while-revalidate=86400",
       },
     });
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Failed to fetch stories";
-    console.error("Medium API route error:", message);
-    return NextResponse.json(
-      { error: "Failed to fetch Medium stories", details: message },
-      { status: 500 }
-    );
+  } catch {
+    return NextResponse.json(mediumStories, {
+      headers: {
+        "Cache-Control": "public, s-maxage=1800, stale-while-revalidate=86400",
+      },
+    });
   }
 }
