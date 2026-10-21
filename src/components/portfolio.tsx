@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { email, linkedin, medium, projects, expertise, experience, initialStories, mediumFeedUrl, reviews, faqs, type MediumStory, type Review, type FAQItem } from "@/lib/content";
+import { email, phone, phoneFormatted, whatsappUrl, linkedin, medium, projects, expertise, experience, initialStories, mediumFeedUrl, reviews, faqs, type MediumStory, type Review, type FAQItem } from "@/lib/content";
 
-type IconName = "arrow" | "diagonal" | "download" | "mail" | "location" | "close" | "menu" | "copy" | "check" | "code" | "star" | "plus" | "minus";
+type IconName = "arrow" | "diagonal" | "download" | "mail" | "location" | "close" | "menu" | "copy" | "check" | "code" | "star" | "plus" | "minus" | "whatsapp";
 function Icon({ name, className = "" }: { name: IconName; className?: string }) {
   const paths: Record<IconName, React.ReactNode> = {
     arrow: <><path d="M4 12h16M14 6l6 6-6 6" /></>,
@@ -19,6 +19,7 @@ function Icon({ name, className = "" }: { name: IconName; className?: string }) 
     star: <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor" stroke="none" />,
     plus: <path d="M12 5v14M5 12h14" />,
     minus: <path d="M5 12h14" />,
+    whatsapp: <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor" stroke="none" />,
   };
   return <svg className={`icon ${className}`} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
 }
@@ -272,15 +273,60 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section className="contact-section" id="contact" aria-labelledby="contact-heading"><div className="container contact-inner"><div><h2 id="contact-heading">Your next store,<br />built with care<span>.</span></h2><p>Have a project in mind or a role that could be a good fit?<br />Let’s start with a conversation.</p><a href={`mailto:${email}`} className="button button-primary">Get in touch <Icon name="diagonal" /></a></div><div className="contact-details"><span className="contact-label">Say hello</span><div className="email-row"><a href={`mailto:${email}`}>{email}</a><button onClick={copyEmail} aria-label="Copy email address"><Icon name={copyStatus.startsWith("Email copied") ? "check" : "copy"} /></button></div><a className="contact-phone" href="tel:+918120805721">+91 8120 805 721</a><div className="contact-socials"><a className="linkedin-link" href={linkedin} target="_blank" rel="noreferrer">Find me on LinkedIn <Icon name="diagonal" /></a><a className="medium-link" href={medium} target="_blank" rel="noreferrer">Read on Medium <Icon name="diagonal" /></a></div><div className="contact-location"><Icon name="location" /><span>Indore, Madhya Pradesh, India</span></div></div></div></section>
+      <section className="contact-section" id="contact" aria-labelledby="contact-heading">
+        <div className="container contact-inner">
+          <div>
+            <h2 id="contact-heading">Your next store,<br />built with care<span>.</span></h2>
+            <p>Have a project in mind or a role that could be a good fit?<br />Let’s start with a conversation.</p>
+            <div className="contact-actions">
+              <a href={`mailto:${email}`} className="button button-primary">Get in touch <Icon name="diagonal" /></a>
+              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button button-whatsapp">
+                <Icon name="whatsapp" /> Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+          <div className="contact-details">
+            <span className="contact-label">Say hello</span>
+            <div className="email-row">
+              <a href={`mailto:${email}`}>{email}</a>
+              <button onClick={copyEmail} aria-label="Copy email address"><Icon name={copyStatus.startsWith("Email copied") ? "check" : "copy"} /></button>
+            </div>
+            <div className="contact-phone-group">
+              <a className="contact-phone" href={`tel:${phone}`}>{phoneFormatted}</a>
+              <span className="contact-divider" aria-hidden="true">·</span>
+              <a className="contact-whatsapp-link" href={whatsappUrl} target="_blank" rel="noreferrer">
+                <Icon name="whatsapp" /> Direct WhatsApp
+              </a>
+            </div>
+            <div className="contact-socials">
+              <a className="linkedin-link" href={linkedin} target="_blank" rel="noreferrer">Find me on LinkedIn <Icon name="diagonal" /></a>
+              <a className="medium-link" href={medium} target="_blank" rel="noreferrer">Read on Medium <Icon name="diagonal" /></a>
+            </div>
+            <div className="contact-location"><Icon name="location" /><span>Indore, Madhya Pradesh, India</span></div>
+          </div>
+        </div>
+      </section>
 
     </main>
 
     <footer className="site-footer container"><a href="#" className="wordmark">lokesh<span>.</span></a><p>© {new Date().getFullYear()} Lokesh Prajapat</p><a href="#main" className="back-top">Back to top <Icon name="arrow" /></a></footer>
     <div className={`toast ${copyStatus ? "visible" : ""}`} role="status" aria-live="polite">{copyStatus}</div>
 
+    {/* Floating WhatsApp Quick Action */}
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noreferrer"
+      className="floating-whatsapp"
+      aria-label="Chat directly on WhatsApp with Lokesh Prajapat"
+    >
+      <span className="floating-whatsapp-pulse" aria-hidden="true" />
+      <Icon name="whatsapp" />
+      <span className="floating-whatsapp-label">Chat on WhatsApp</span>
+    </a>
+
     <dialog ref={dialogRef} className="project-dialog" aria-labelledby="project-dialog-title" onClick={event => { if (event.target === event.currentTarget) dialogRef.current?.close(); }}>
-      {selectedProject && <div className="dialog-inner"><button className="dialog-close" aria-label="Close project details" onClick={() => dialogRef.current?.close()}><Icon name="close" /></button>{selectedProject.metric && <div className="dialog-metric-pill"><span className="metric-dot" aria-hidden="true" /><span>Key Result: <strong>{selectedProject.metric}</strong></span></div>}<h2 id="project-dialog-title">{selectedProject.name}</h2><span className="dialog-category">{selectedProject.category} · {selectedProject.industry}</span><p className="dialog-summary">{selectedProject.summary}</p><h3>My contribution</h3><ul>{selectedProject.details.map(detail => <li key={detail}>{detail}</li>)}</ul><div className="project-tags">{selectedProject.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="dialog-actions">{selectedProject.url && <a className="button button-primary" href={selectedProject.url} target="_blank" rel="noreferrer">Visit live store <Icon name="diagonal" /></a>}<a className="button button-outline" href={`mailto:${email}?subject=${encodeURIComponent(`Let’s discuss a project like ${selectedProject.name}`)}`}>Discuss a similar project <Icon name="arrow" /></a></div></div>}
+      {selectedProject && <div className="dialog-inner"><button className="dialog-close" aria-label="Close project details" onClick={() => dialogRef.current?.close()}><Icon name="close" /></button>{selectedProject.metric && <div className="dialog-metric-pill"><span className="metric-dot" aria-hidden="true" /><span>Key Result: <strong>{selectedProject.metric}</strong></span></div>}<h2 id="project-dialog-title">{selectedProject.name}</h2><span className="dialog-category">{selectedProject.category} · {selectedProject.industry}</span><p className="dialog-summary">{selectedProject.summary}</p><h3>My contribution</h3><ul>{selectedProject.details.map(detail => <li key={detail}>{detail}</li>)}</ul><div className="project-tags">{selectedProject.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="dialog-actions">{selectedProject.url && <a className="button button-primary" href={selectedProject.url} target="_blank" rel="noreferrer">Visit live store <Icon name="diagonal" /></a>}<a className="button button-whatsapp" href={`https://wa.me/918120805721?text=${encodeURIComponent(`Hi Lokesh, I saw your work on ${selectedProject.name} and would like to discuss a similar Shopify project.`)}`} target="_blank" rel="noreferrer"><Icon name="whatsapp" /> Discuss on WhatsApp</a><a className="button button-outline" href={`mailto:${email}?subject=${encodeURIComponent(`Let’s discuss a project like ${selectedProject.name}`)}`}>Email inquiry <Icon name="arrow" /></a></div></div>}
     </dialog>
 
   </>;

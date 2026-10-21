@@ -1,4 +1,8 @@
 export const email = "lokeshprajapati000@gmail.com";
+export const phone = "+918120805721";
+export const phoneFormatted = "+91 8120 805 721";
+export const whatsappMessage = "Hi Lokesh, I saw your portfolio and would like to discuss a Shopify project.";
+export const whatsappUrl = `https://wa.me/918120805721?text=${encodeURIComponent(whatsappMessage)}`;
 export const linkedin = "https://www.linkedin.com/in/lokeshprajapati";
 export const medium = "https://medium.com/@lokesh-prajapati";
 
