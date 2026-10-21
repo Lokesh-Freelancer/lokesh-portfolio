@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { email, linkedin, medium, projects, expertise, experience, initialStories, mediumFeedUrl, type MediumStory } from "@/lib/content";
+import { email, linkedin, medium, projects, expertise, experience, initialStories, mediumFeedUrl, reviews, type MediumStory, type Review } from "@/lib/content";
 
-type IconName = "arrow" | "diagonal" | "download" | "mail" | "location" | "close" | "menu" | "copy" | "check" | "code";
+type IconName = "arrow" | "diagonal" | "download" | "mail" | "location" | "close" | "menu" | "copy" | "check" | "code" | "star";
 function Icon({ name, className = "" }: { name: IconName; className?: string }) {
   const paths: Record<IconName, React.ReactNode> = {
     arrow: <><path d="M4 12h16M14 6l6 6-6 6" /></>,
@@ -16,8 +16,21 @@ function Icon({ name, className = "" }: { name: IconName; className?: string }) 
     copy: <><rect x="8" y="8" width="12" height="13" rx="2" /><path d="M16 8V3H3v13h5" /></>,
     check: <path d="m5 12 4 4L19 6" />,
     code: <path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18" />,
+    star: <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor" stroke="none" />,
   };
   return <svg className={`icon ${className}`} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
+}
+
+function RatingStars({ count = 5 }: { count?: number }) {
+  return (
+    <div className="rating-stars" aria-label={`${count} out of 5 stars`}>
+      {Array.from({ length: count }).map((_, i) => (
+        <svg key={i} className="star-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
+      ))}
+    </div>
+  );
 }
 
 function ThemeDemo() {
@@ -47,6 +60,7 @@ function ThemeDemo() {
 export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [filter, setFilter] = useState("All work");
+  const [reviewFilter, setReviewFilter] = useState("All reviews");
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
   const [copyStatus, setCopyStatus] = useState("");
   const [stories, setStories] = useState<MediumStory[]>(initialStories);
@@ -93,6 +107,7 @@ export default function Portfolio() {
 
   const nav = [
     { label: "Work", id: "work" },
+    { label: "Reviews", id: "reviews" },
     { label: "Writing", id: "writing" },
     { label: "Expertise", id: "expertise" },
     { label: "Experience", id: "experience" },
@@ -119,6 +134,64 @@ export default function Portfolio() {
         <div className="section-heading"><div><h2 id="work-heading">Selected work<span>.</span></h2><p>A few brands I’ve helped bring to life online.</p></div><div className="filters" aria-label="Filter projects">{["All work", "Shopify", "WordPress"].map(item => <button key={item} aria-pressed={filter === item} onClick={() => setFilter(item)}>{item}</button>)}</div></div>
         <div className="project-grid">{projects.filter(project => filter === "All work" || project.category === filter).map(project => <article className="project" key={project.name}><button className={`project-cover ${project.style}`} aria-label={`View ${project.name} project details`} onClick={() => openProject(project)}><span className="cover-platform">{project.category} / {project.industry}</span><div className="cover-brand">{project.style === "milano" && <span className="milano-mark">m</span>}{project.style === "riders" && <Icon name="code" />}<span>{project.short}</span>{project.style === "milano" && <small>WIGS COLLECTION</small>}{project.style === "proteger" && <small>DAILY</small>}{project.style === "today" && <span className="today-rule" />}{project.style === "inspire" && <small>COMMUNITIES</small>}{project.style === "mywall" && <small>WALLPAPER STUDIO</small>}{project.style === "vitaliving" && <small>HEALTH & WELLNESS</small>}{project.style === "pinkpigs" && <small>GIFTS THAT GIVE BACK</small>}{project.style === "eves" && <small>NEW YORK INTIMATES</small>}{project.style === "littlebones" && <small>PEDIATRIC CLINIC</small>}</div><span className="cover-footer">Illustrative project cover<span className="cover-arrow"><Icon name="diagonal" /></span></span></button><div className="project-title"><h3><button onClick={() => openProject(project)}>{project.name}</button></h3>{project.url ? <a className="project-open" href={project.url} target="_blank" rel="noreferrer" aria-label={`Visit live website for ${project.name}`}><Icon name="diagonal" /></a> : <button className="project-open" onClick={() => openProject(project)} aria-label={`Read about ${project.name}`}><Icon name="diagonal" /></button>}</div><p>{project.summary}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-actions"><button className="project-details-btn" onClick={() => openProject(project)}>View details</button>{project.url && <a className="project-live-link" href={project.url} target="_blank" rel="noreferrer">Visit live site <Icon name="diagonal" /></a>}</div></article>)}</div>
       </section>
+
+      <section className="reviews-section section container" id="reviews" aria-labelledby="reviews-heading">
+        <div className="section-heading">
+          <div>
+            <div className="trust-pill">
+              <span className="trust-dot" aria-hidden="true" />
+              <span>Verified Client Feedback · 5.0 Rating</span>
+            </div>
+            <h2 id="reviews-heading">Client reviews<span>.</span></h2>
+            <p>Direct experiences from store owners, founders, and ecommerce leaders.</p>
+          </div>
+          <div className="filters" aria-label="Filter client reviews">
+            {["All reviews", "Shopify", "WordPress"].map(item => (
+              <button
+                key={item}
+                aria-pressed={reviewFilter === item}
+                onClick={() => setReviewFilter(item)}
+              >
+                {item}
+                <span className="filter-count">
+                  {item === "All reviews"
+                    ? ` (${reviews.length})`
+                    : ` (${reviews.filter(r => r.category === item).length})`}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="reviews-grid">
+          {reviews
+            .filter(r => reviewFilter === "All reviews" || r.category === reviewFilter)
+            .map(rev => (
+              <article className="review-card" key={rev.id}>
+                <div className="review-card-top">
+                  <RatingStars count={rev.rating} />
+                  <span className="review-store-badge">{rev.projectShort}</span>
+                </div>
+                <blockquote className="review-quote">
+                  <p>“{rev.quote}”</p>
+                </blockquote>
+                <div className="review-author">
+                  <div className="author-avatar">{rev.initials}</div>
+                  <div className="author-info">
+                    <h4>{rev.clientName}</h4>
+                    <p className="author-role">{rev.role} · <span>{rev.company}</span></p>
+                    <small className="author-location">{rev.location}</small>
+                  </div>
+                </div>
+                <div className="review-card-footer">
+                  <span className="review-tag">{rev.tag}</span>
+                  <span className="review-platform-pill">{rev.category}</span>
+                </div>
+              </article>
+            ))}
+        </div>
+      </section>
+
 
       <section className="writing-section section container" id="writing" aria-labelledby="writing-heading">
         <div className="section-heading">

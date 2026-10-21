@@ -159,3 +159,152 @@ export const initialStories: MediumStory[] = (mediumStoriesData as MediumStory[]
         snippet: "Most developers can make code work. But great developers write code that others love reading and maintaining. Key patterns for modern JavaScript.",
       },
     ];
+
+export interface Review {
+  id: string;
+  clientName: string;
+  initials: string;
+  role: string;
+  company: string;
+  location: string;
+  category: "Shopify" | "WordPress";
+  rating: number;
+  tag: string;
+  projectShort: string;
+  quote: string;
+}
+
+export const reviews: Review[] = [
+  {
+    id: "milano",
+    clientName: "Judy Geisinsky",
+    initials: "JG",
+    role: "Founder & CEO",
+    company: "Milano Wigs Collection",
+    location: "New York City, USA 🇺🇸",
+    category: "Shopify",
+    rating: 5,
+    tag: "Custom Theme & Filters",
+    projectShort: "Milano Wigs",
+    quote: "Lokesh engineered our custom luxury theme from scratch. His multi-tiered product filters and mobile-first approach transformed our catalog discovery. Our mobile checkout conversion increased noticeably within weeks.",
+  },
+  {
+    id: "proteger",
+    clientName: "Peter Clarkson",
+    initials: "PC",
+    role: "Founder & Creative Director",
+    company: "Protéger Daily",
+    location: "New York City, USA 🇺🇸",
+    category: "Shopify",
+    rating: 5,
+    tag: "Conversion-Focused PDP",
+    projectShort: "Proteger Daily",
+    quote: "Lokesh built modular Liquid sections that our marketing team can update anytime without touching code. High conversion rates and zero theme lag—he exceeded every single expectation.",
+  },
+  {
+    id: "today",
+    clientName: "Sarah Choi",
+    initials: "SC",
+    role: "Founder & CEO",
+    company: "AS OF TODAY Skincare",
+    location: "New York / New Jersey, USA 🇺🇸",
+    category: "Shopify",
+    rating: 5,
+    tag: "Minimal Theme & SEO",
+    projectShort: "As Of Today",
+    quote: "Speed was our number one priority. Lokesh stripped out redundant scripts, crafted clean Liquid components, and achieved top PageSpeed scores while maintaining a stunning minimalist aesthetic.",
+  },
+  {
+    id: "riders",
+    clientName: "Saurabh Chhajed",
+    initials: "SC",
+    role: "Founder & CEO",
+    company: "YourTechRiders Pvt. Ltd.",
+    location: "Indore, India 🇮🇳",
+    category: "WordPress",
+    rating: 5,
+    tag: "Corporate Site & Component System",
+    projectShort: "YourTechRiders",
+    quote: "Lokesh is one of those rare developers who bridges technical depth and design sense. His reusable component architecture reduced our overall turnaround time by 30% across multiple client initiatives.",
+  },
+  {
+    id: "inspire",
+    clientName: "Operations Leadership",
+    initials: "IC",
+    role: "Apollo Global Management Portfolio",
+    company: "Inspire Communities",
+    location: "Phoenix, Arizona, USA 🇺🇸",
+    category: "WordPress",
+    rating: 5,
+    tag: "Custom PHP & Interactive Map",
+    projectShort: "Inspire Communities",
+    quote: "Developing an interactive locator map for dozens of communities across America required deep custom PHP backend logic. Lokesh delivered a seamless, responsive search experience that our visitors praise daily.",
+  },
+  {
+    id: "mywall",
+    clientName: "Yuranny & Edwin Garcia",
+    initials: "YG",
+    role: "Co-Founders & Owners",
+    company: "It's My Wall Store",
+    location: "Houston, Texas, USA 🇺🇸",
+    category: "Shopify",
+    rating: 5,
+    tag: "Liquid Calculator & Custom Store",
+    projectShort: "It's My Wall",
+    quote: "We needed an interactive wallpaper roll calculator tailored to 1,500+ luxury SKUs. Other developers suggested bloated third-party apps, but Lokesh wrote custom Liquid and JavaScript that runs lightning fast. True technical mastery.",
+  },
+  {
+    id: "vitaliving",
+    clientName: "Deepak Datta",
+    initials: "DD",
+    role: "Founder & President",
+    company: "VitaLiving",
+    location: "South Elgin, Illinois, USA 🇺🇸",
+    category: "Shopify",
+    rating: 5,
+    tag: "Catalog Optimization & Liquid",
+    projectShort: "Vita Living",
+    quote: "Managing 200+ practitioner supplement brands on Shopify was daunting until Lokesh joined. He built custom Liquid recommendation modules, optimized large catalog queries, and made product pages fly.",
+  },
+  {
+    id: "pinkpigs",
+    clientName: "Elaine West",
+    initials: "EW",
+    role: "Founder & Executive Director",
+    company: "The Pink Pigs / Rooterville",
+    location: "Melrose, Florida, USA 🇺🇸",
+    category: "Shopify",
+    rating: 5,
+    tag: "Storefront UX & App Integration",
+    projectShort: "The Pink Pigs",
+    quote: "Every purchase directly supports our animal rescue sanctuary. Lokesh streamlined our checkout flow, resolved complex navigation across dozens of boutique collections, and integrated our review apps flawlessly.",
+  },
+  {
+    id: "eves",
+    clientName: "Camilla Bottari",
+    initials: "CB",
+    role: "Founder & Creative Director",
+    company: "Eve's Disclosure",
+    location: "New York City, USA 🇺🇸",
+    category: "Shopify",
+    rating: 5,
+    tag: "DTC Luxury Storefront",
+    projectShort: "Eve's Disclosure",
+    quote: "Our brand aesthetics demand perfection. Lokesh delivered dynamic PDP layouts for our fabric technology, intuitive fit guides, and micro-interactions that elevate the whole luxury shopping journey.",
+  },
+  {
+    id: "littlebones",
+    clientName: "Dr. Pushpvardhan Mandlecha",
+    initials: "PM",
+    role: "Founder & Pediatric Orthopedic Specialist",
+    company: "Little Bones Clinic",
+    location: "Indore, Madhya Pradesh, India 🇮🇳",
+    category: "WordPress",
+    rating: 5,
+    tag: "Healthcare UX & Local SEO",
+    projectShort: "Little Bones Clinic",
+    quote: "Lokesh understood the delicate nature of pediatric healthcare. He built a comforting, accessible clinic portal that simplified appointment bookings and dramatically boosted our patient inquiries across Central India.",
+  },
+];
+
+
