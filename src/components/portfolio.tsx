@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { email, linkedin, medium, projects, expertise, experience, initialStories, mediumFeedUrl, reviews, type MediumStory, type Review } from "@/lib/content";
+import { email, linkedin, medium, projects, expertise, experience, initialStories, mediumFeedUrl, reviews, faqs, type MediumStory, type Review, type FAQItem } from "@/lib/content";
 
-type IconName = "arrow" | "diagonal" | "download" | "mail" | "location" | "close" | "menu" | "copy" | "check" | "code" | "star";
+type IconName = "arrow" | "diagonal" | "download" | "mail" | "location" | "close" | "menu" | "copy" | "check" | "code" | "star" | "plus" | "minus";
 function Icon({ name, className = "" }: { name: IconName; className?: string }) {
   const paths: Record<IconName, React.ReactNode> = {
     arrow: <><path d="M4 12h16M14 6l6 6-6 6" /></>,
@@ -17,6 +17,8 @@ function Icon({ name, className = "" }: { name: IconName; className?: string }) 
     check: <path d="m5 12 4 4L19 6" />,
     code: <path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18" />,
     star: <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor" stroke="none" />,
+    plus: <path d="M12 5v14M5 12h14" />,
+    minus: <path d="M5 12h14" />,
   };
   return <svg className={`icon ${className}`} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
 }
@@ -61,6 +63,7 @@ export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [filter, setFilter] = useState("All work");
   const [reviewFilter, setReviewFilter] = useState("All reviews");
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
   const [copyStatus, setCopyStatus] = useState("");
   const [stories, setStories] = useState<MediumStory[]>(initialStories);
@@ -112,7 +115,9 @@ export default function Portfolio() {
     { label: "Expertise", id: "expertise" },
     { label: "Experience", id: "experience" },
     { label: "About", id: "about" },
+    { label: "FAQ", id: "faq" },
   ];
+
 
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
@@ -220,9 +225,55 @@ export default function Portfolio() {
 
       <section className="experience-section section container" id="experience" aria-labelledby="experience-heading"><div className="section-heading"><div><h2 id="experience-heading">The journey so far<span>.</span></h2><p>Hands-on experience. Real client work. Always learning.</p></div><a className="resume-link" href="/Lokesh-Resume.pdf" download>Full resume <Icon name="download" /></a></div><div className="timeline">{experience.map((job, index) => <article key={job.company} className="experience-entry"><div className="experience-date"><span className={`timeline-dot ${index === 0 ? "current" : ""}`} /><p>{job.dates}</p><small>{job.location}</small></div><div className="experience-content"><h3>{job.role}</h3><p className="company">{job.company}</p><ul>{job.points.map(point => <li key={point}>{point}</li>)}</ul></div></article>)}</div></section>
 
-      <section className="about-section section container" id="about" aria-labelledby="about-heading"><div className="about-art" aria-hidden="true"><span>l<span className="art-period">.</span></span><div>Curiosity in the process.<br />Care in the details.</div></div><div className="about-copy"><h2 id="about-heading">A developer with<br />an eye for the details<span>.</span></h2><p>Hi, I’m Lokesh. Based in Indore, I specialize in turning ideas into polished ecommerce experiences. My work brings together Shopify development, responsive design, and a focus on performance.</p><p>I enjoy solving the small, tricky problems that make a big difference—whether that’s a custom Liquid feature, a smoother product page, or a carefully planned store migration.</p><div className="education"><h3>Education</h3><div><strong>B.Sc. in Mathematics</strong><span>Govt. N.S.P. Science College, Indore</span><small>2018 — 2022</small></div><div><strong>Web Design Certificate</strong><span>Virtual Voyages College, Indore</span><small>2018 — 2019</small></div></div></div></section>
+      <section className="faq-section section container" id="faq" aria-labelledby="faq-heading">
+        <div className="section-heading">
+          <div>
+            <div className="trust-pill">
+              <span className="trust-dot" aria-hidden="true" />
+              <span>Got Questions? · Transparent Process</span>
+            </div>
+            <h2 id="faq-heading">Frequently asked questions<span>.</span></h2>
+            <p>Everything you need to know about working together, timelines, and store migrations.</p>
+          </div>
+          <a href="#contact" className="resume-link">Have another question? Let’s talk <Icon name="arrow" /></a>
+        </div>
+
+        <div className="faq-accordion">
+          {faqs.map((faq, index) => {
+            const isOpen = openFaq === index;
+            return (
+              <div
+                className={`faq-card ${isOpen ? "is-open" : ""}`}
+                key={faq.question}
+              >
+                <button
+                  className="faq-question-btn"
+                  onClick={() => setOpenFaq(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${index}`}
+                >
+                  <span className="faq-index">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="faq-question-text">{faq.question}</span>
+                  <span className="faq-toggle-icon" aria-hidden="true">
+                    <Icon name={isOpen ? "minus" : "plus"} />
+                  </span>
+                </button>
+                <div
+                  id={`faq-answer-${index}`}
+                  className="faq-answer-wrapper"
+                  style={{ display: isOpen ? "block" : "none" }}
+                  role="region"
+                >
+                  <p className="faq-answer-text">{faq.answer}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
       <section className="contact-section" id="contact" aria-labelledby="contact-heading"><div className="container contact-inner"><div><h2 id="contact-heading">Your next store,<br />built with care<span>.</span></h2><p>Have a project in mind or a role that could be a good fit?<br />Let’s start with a conversation.</p><a href={`mailto:${email}`} className="button button-primary">Get in touch <Icon name="diagonal" /></a></div><div className="contact-details"><span className="contact-label">Say hello</span><div className="email-row"><a href={`mailto:${email}`}>{email}</a><button onClick={copyEmail} aria-label="Copy email address"><Icon name={copyStatus.startsWith("Email copied") ? "check" : "copy"} /></button></div><a className="contact-phone" href="tel:+918120805721">+91 8120 805 721</a><div className="contact-socials"><a className="linkedin-link" href={linkedin} target="_blank" rel="noreferrer">Find me on LinkedIn <Icon name="diagonal" /></a><a className="medium-link" href={medium} target="_blank" rel="noreferrer">Read on Medium <Icon name="diagonal" /></a></div><div className="contact-location"><Icon name="location" /><span>Indore, Madhya Pradesh, India</span></div></div></div></section>
+
     </main>
 
     <footer className="site-footer container"><a href="#" className="wordmark">lokesh<span>.</span></a><p>© {new Date().getFullYear()} Lokesh Prajapat</p><a href="#main" className="back-top">Back to top <Icon name="arrow" /></a></footer>

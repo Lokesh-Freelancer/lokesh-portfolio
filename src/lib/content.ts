@@ -317,4 +317,43 @@ export const reviews: Review[] = [
   },
 ];
 
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export const faqs: FAQItem[] = [
+  {
+    question: "What is your typical turnaround time for a custom Shopify store?",
+    answer:
+      "A complete bespoke Shopify 2.0 store typically takes 2 to 4 weeks depending on catalog complexity, custom Liquid requirements, and third-party app integrations. For smaller deliverables—such as custom PDP sections, roll calculators, or Core Web Vitals speed optimization—turnaround is usually 3 to 7 business days.",
+  },
+  {
+    question: "How do you handle communication and time zones for US / UK clients?",
+    answer:
+      "Over 80% of my clients are based across the United States and Europe. I maintain daily dedicated overlap with EST, PST, and GMT working hours for Slack/WhatsApp updates, async Loom walkthroughs, and sprint planning calls. You will never wait 24 hours for a response.",
+  },
+  {
+    question: "Can you migrate my existing store from WordPress, WooCommerce, or Wix to Shopify without losing SEO?",
+    answer:
+      "Yes, zero-downtime migration is one of my core specializations. I set up automated 301 URL redirect maps to preserve every ounce of your Google rankings, migrate customer accounts and complete order history, and ensure zero loss of active revenue during the switch.",
+  },
+  {
+    question: "Do you write custom Liquid code or rely on heavy third-party apps?",
+    answer:
+      "I prioritize clean, native Liquid and vanilla JavaScript solutions whenever possible. Third-party apps bloat store code, slow down mobile checkout, and accumulate recurring monthly costs. I build custom features—like product calculators, bundle builders, and dynamic size guides—directly into your theme.",
+  },
+  {
+    question: "Do you provide post-launch support and bug fixes?",
+    answer:
+      "Every project includes 30 days of complimentary post-launch support and bug-fixing warranty. If anything needs fine-tuning after going live, I address it immediately. I also offer monthly retainer partnerships for ongoing CRO testing, feature releases, and campaign launches.",
+  },
+  {
+    question: "What does your pricing structure look like?",
+    answer:
+      "I offer transparent milestone-based fixed pricing for scoped projects, as well as hourly and weekly retainer models for ongoing development. Once we agree on scope and deliverables, you receive a detailed proposal with fixed timelines—no surprise invoices.",
+  },
+];
+
+
 
