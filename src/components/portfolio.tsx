@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { email, phone, phoneFormatted, whatsappUrl, linkedin, medium, projects, expertise, experience, initialStories, mediumFeedUrl, reviews, faqs, type MediumStory, type Review, type FAQItem } from "@/lib/content";
+import { ProjectInquiryForm } from "./inquiry-form";
 
 type IconName = "arrow" | "diagonal" | "download" | "mail" | "location" | "close" | "menu" | "copy" | "check" | "code" | "star" | "plus" | "minus" | "whatsapp";
 function Icon({ name, className = "" }: { name: IconName; className?: string }) {
@@ -275,34 +276,57 @@ export default function Portfolio() {
 
       <section className="contact-section" id="contact" aria-labelledby="contact-heading">
         <div className="container contact-inner">
-          <div>
+          <div className="contact-info-col">
+            <div className="trust-pill">
+              <span className="trust-dot" aria-hidden="true" />
+              <span>Let’s Talk · 24h Response Time</span>
+            </div>
             <h2 id="contact-heading">Your next store,<br />built with care<span>.</span></h2>
-            <p>Have a project in mind or a role that could be a good fit?<br />Let’s start with a conversation.</p>
+            <p>
+              Have a project in mind, an existing store that needs custom Liquid optimization, or a role to discuss? Send a quick brief or reach out directly.
+            </p>
+
             <div className="contact-actions">
-              <a href={`mailto:${email}`} className="button button-primary">Get in touch <Icon name="diagonal" /></a>
+              <a href={`mailto:${email}`} className="button button-outline">
+                Direct Email <Icon name="diagonal" />
+              </a>
               <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button button-whatsapp">
                 <Icon name="whatsapp" /> Chat on WhatsApp
               </a>
             </div>
+
+            <div className="contact-details">
+              <span className="contact-label">Direct reach</span>
+              <div className="email-row">
+                <a href={`mailto:${email}`}>{email}</a>
+                <button onClick={copyEmail} aria-label="Copy email address">
+                  <Icon name={copyStatus.startsWith("Email copied") ? "check" : "copy"} />
+                </button>
+              </div>
+              <div className="contact-phone-group">
+                <a className="contact-phone" href={`tel:${phone}`}>{phoneFormatted}</a>
+                <span className="contact-divider" aria-hidden="true">·</span>
+                <a className="contact-whatsapp-link" href={whatsappUrl} target="_blank" rel="noreferrer">
+                  <Icon name="whatsapp" /> Direct WhatsApp
+                </a>
+              </div>
+              <div className="contact-socials">
+                <a className="linkedin-link" href={linkedin} target="_blank" rel="noreferrer">
+                  Find me on LinkedIn <Icon name="diagonal" />
+                </a>
+                <a className="medium-link" href={medium} target="_blank" rel="noreferrer">
+                  Read on Medium <Icon name="diagonal" />
+                </a>
+              </div>
+              <div className="contact-location">
+                <Icon name="location" />
+                <span>Indore, Madhya Pradesh, India 🇮🇳 (Global Overlap)</span>
+              </div>
+            </div>
           </div>
-          <div className="contact-details">
-            <span className="contact-label">Say hello</span>
-            <div className="email-row">
-              <a href={`mailto:${email}`}>{email}</a>
-              <button onClick={copyEmail} aria-label="Copy email address"><Icon name={copyStatus.startsWith("Email copied") ? "check" : "copy"} /></button>
-            </div>
-            <div className="contact-phone-group">
-              <a className="contact-phone" href={`tel:${phone}`}>{phoneFormatted}</a>
-              <span className="contact-divider" aria-hidden="true">·</span>
-              <a className="contact-whatsapp-link" href={whatsappUrl} target="_blank" rel="noreferrer">
-                <Icon name="whatsapp" /> Direct WhatsApp
-              </a>
-            </div>
-            <div className="contact-socials">
-              <a className="linkedin-link" href={linkedin} target="_blank" rel="noreferrer">Find me on LinkedIn <Icon name="diagonal" /></a>
-              <a className="medium-link" href={medium} target="_blank" rel="noreferrer">Read on Medium <Icon name="diagonal" /></a>
-            </div>
-            <div className="contact-location"><Icon name="location" /><span>Indore, Madhya Pradesh, India</span></div>
+
+          <div className="contact-form-col">
+            <ProjectInquiryForm />
           </div>
         </div>
       </section>
