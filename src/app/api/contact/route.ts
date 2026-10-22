@@ -48,7 +48,7 @@ export async function POST(request: Request) {
     console.log("[New Project Inquiry Received]", cleanData);
 
     // Forward to Web3Forms if access key is available
-    const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY;
+    const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY || "6d6f4bc4-52d0-4206-bc7e-1db790d7954f";
     if (web3formsKey) {
       try {
         const externalRes = await fetch("https://api.web3forms.com/submit", {

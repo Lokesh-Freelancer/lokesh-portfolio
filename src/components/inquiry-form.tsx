@@ -38,18 +38,42 @@ export function ProjectInquiryForm() {
     setErrorMessage("");
 
     try {
-      const res = await fetch("/api/contact/", {
+      // 1. Submit directly to Web3Forms with user's access key
+      const web3Promise = fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "6d6f4bc4-52d0-4206-bc7e-1db790d7954f",
+          subject: `New Shopify Inquiry: ${name.trim()} (${projectType})`,
+          from_name: "Lokesh Portfolio",
+          name: name.trim(),
+          email: email.trim(),
+          "Project Type": projectType,
+          "Estimated Budget": budget,
+          message: message.trim(),
+        }),
+      }).catch((e) => {
+        console.warn("[Web3Forms Client Send Failed]", e);
+        return null;
+      });
+
+      // 2. Also forward to internal /api/contact/ for logging and server-side fallback
+      const apiPromise = fetch("/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, projectType, budget, message }),
-      });
+      }).catch(() => null);
 
-      const data = await res.json();
-      if (res.ok && data.success) {
+      const [web3Res, apiRes] = await Promise.all([web3Promise, apiPromise]);
+
+      if ((web3Res && web3Res.ok) || (apiRes && apiRes.ok)) {
         setStatus("success");
       } else {
         setStatus("error");
-        setErrorMessage(data.error || "Unable to send message right now. Please try again or WhatsApp.");
+        setErrorMessage("Unable to send inquiry right now. Please message directly on WhatsApp.");
       }
     } catch {
       setStatus("error");
