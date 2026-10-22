@@ -139,7 +139,85 @@ export default function Portfolio() {
 
       <section className="work-section container section" id="work" aria-labelledby="work-heading">
         <div className="section-heading"><div><h2 id="work-heading">Selected work<span>.</span></h2><p>A few brands I’ve helped bring to life online.</p></div><div className="filters" aria-label="Filter projects">{["All work", "Shopify", "WordPress"].map(item => <button key={item} aria-pressed={filter === item} onClick={() => setFilter(item)}>{item}</button>)}</div></div>
-        <div className="project-grid">{projects.filter(project => filter === "All work" || project.category === filter).map(project => <article className="project" key={project.name}><button className={`project-cover ${project.style}`} aria-label={`View ${project.name} project details`} onClick={() => openProject(project)}><span className="cover-platform">{project.category} / {project.industry}</span><div className="cover-brand">{project.style === "milano" && <span className="milano-mark">m</span>}{project.style === "riders" && <Icon name="code" />}<span>{project.short}</span>{project.style === "milano" && <small>WIGS COLLECTION</small>}{project.style === "proteger" && <small>DAILY</small>}{project.style === "today" && <span className="today-rule" />}{project.style === "inspire" && <small>COMMUNITIES</small>}{project.style === "mywall" && <small>WALLPAPER STUDIO</small>}{project.style === "vitaliving" && <small>HEALTH & WELLNESS</small>}{project.style === "pinkpigs" && <small>GIFTS THAT GIVE BACK</small>}{project.style === "eves" && <small>NEW YORK INTIMATES</small>}{project.style === "littlebones" && <small>PEDIATRIC CLINIC</small>}</div><span className="cover-footer">Illustrative project cover<span className="cover-arrow"><Icon name="diagonal" /></span></span></button><div className="project-metric-row"><span className="project-metric-pill"><span className="metric-dot" aria-hidden="true" /><span>{project.metric}</span></span></div><div className="project-title"><h3><button onClick={() => openProject(project)}>{project.name}</button></h3>{project.url ? <a className="project-open" href={project.url} target="_blank" rel="noreferrer" aria-label={`Visit live website for ${project.name}`}><Icon name="diagonal" /></a> : <button className="project-open" onClick={() => openProject(project)} aria-label={`Read about ${project.name}`}><Icon name="diagonal" /></button>}</div><p>{project.summary}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-actions"><button className="project-details-btn" onClick={() => openProject(project)}>View details</button>{project.url && <a className="project-live-link" href={project.url} target="_blank" rel="noreferrer">Visit live site <Icon name="diagonal" /></a>}</div></article>)}</div>
+        <div className="project-grid">
+          {projects
+            .filter(project => filter === "All work" || project.category === filter)
+            .map(project => (
+              <article className="project" key={project.name}>
+                <button
+                  className={`project-cover ${project.style} ${project.image ? "has-image" : ""}`}
+                  aria-label={`View ${project.name} project details`}
+                  onClick={() => openProject(project)}
+                >
+                  {project.image ? (
+                    <div className="project-cover-media">
+                      <img
+                        src={project.image}
+                        alt={`${project.name} storefront`}
+                        loading="lazy"
+                        className="project-cover-img"
+                      />
+                      <div className="project-cover-overlay">
+                        <span className="cover-platform">{project.category} / {project.industry}</span>
+                        <span className="cover-footer">
+                          <span>View case study</span>
+                          <span className="cover-arrow"><Icon name="diagonal" /></span>
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <span className="cover-platform">{project.category} / {project.industry}</span>
+                      <div className="cover-brand">
+                        {project.style === "milano" && <span className="milano-mark">m</span>}
+                        {project.style === "riders" && <Icon name="code" />}
+                        <span>{project.short}</span>
+                        {project.style === "milano" && <small>WIGS COLLECTION</small>}
+                        {project.style === "proteger" && <small>DAILY</small>}
+                        {project.style === "today" && <span className="today-rule" />}
+                        {project.style === "inspire" && <small>COMMUNITIES</small>}
+                        {project.style === "mywall" && <small>WALLPAPER STUDIO</small>}
+                        {project.style === "vitaliving" && <small>HEALTH & WELLNESS</small>}
+                        {project.style === "pinkpigs" && <small>GIFTS THAT GIVE BACK</small>}
+                        {project.style === "eves" && <small>NEW YORK INTIMATES</small>}
+                        {project.style === "littlebones" && <small>PEDIATRIC CLINIC</small>}
+                      </div>
+                      <span className="cover-footer">
+                        Illustrative project cover
+                        <span className="cover-arrow"><Icon name="diagonal" /></span>
+                      </span>
+                    </>
+                  )}
+                </button>
+                <div className="project-metric-row">
+                  <span className="project-metric-pill">
+                    <span className="metric-dot" aria-hidden="true" />
+                    <span>{project.metric}</span>
+                  </span>
+                </div>
+                <div className="project-title">
+                  <h3>
+                    <button onClick={() => openProject(project)}>{project.name}</button>
+                  </h3>
+                  {project.url ? (
+                    <a className="project-open" href={project.url} target="_blank" rel="noreferrer" aria-label={`Visit live website for ${project.name}`}>
+                      <Icon name="diagonal" />
+                    </a>
+                  ) : (
+                    <button className="project-open" onClick={() => openProject(project)} aria-label={`Read about ${project.name}`}>
+                      <Icon name="diagonal" />
+                    </button>
+                  )}
+                </div>
+                <p>{project.summary}</p>
+                <div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+                <div className="project-actions">
+                  <button className="project-details-btn" onClick={() => openProject(project)}>View details</button>
+                  {project.url && <a className="project-live-link" href={project.url} target="_blank" rel="noreferrer">Visit live site <Icon name="diagonal" /></a>}
+                </div>
+              </article>
+            ))}
+        </div>
       </section>
 
 
@@ -350,7 +428,59 @@ export default function Portfolio() {
     </a>
 
     <dialog ref={dialogRef} className="project-dialog" aria-labelledby="project-dialog-title" onClick={event => { if (event.target === event.currentTarget) dialogRef.current?.close(); }}>
-      {selectedProject && <div className="dialog-inner"><button className="dialog-close" aria-label="Close project details" onClick={() => dialogRef.current?.close()}><Icon name="close" /></button>{selectedProject.metric && <div className="dialog-metric-pill"><span className="metric-dot" aria-hidden="true" /><span>Key Result: <strong>{selectedProject.metric}</strong></span></div>}<h2 id="project-dialog-title">{selectedProject.name}</h2><span className="dialog-category">{selectedProject.category} · {selectedProject.industry}</span><p className="dialog-summary">{selectedProject.summary}</p><h3>My contribution</h3><ul>{selectedProject.details.map(detail => <li key={detail}>{detail}</li>)}</ul><div className="project-tags">{selectedProject.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="dialog-actions">{selectedProject.url && <a className="button button-primary" href={selectedProject.url} target="_blank" rel="noreferrer">Visit live store <Icon name="diagonal" /></a>}<a className="button button-whatsapp" href={`https://wa.me/918120805721?text=${encodeURIComponent(`Hi Lokesh, I saw your work on ${selectedProject.name} and would like to discuss a similar Shopify project.`)}`} target="_blank" rel="noreferrer"><Icon name="whatsapp" /> Discuss on WhatsApp</a><a className="button button-outline" href={`mailto:${email}?subject=${encodeURIComponent(`Let’s discuss a project like ${selectedProject.name}`)}`}>Email inquiry <Icon name="arrow" /></a></div></div>}
+      {selectedProject && (
+        <div className="dialog-inner">
+          <button className="dialog-close" aria-label="Close project details" onClick={() => dialogRef.current?.close()}>
+            <Icon name="close" />
+          </button>
+          {selectedProject.image && (
+            <div className="dialog-cover-media">
+              <img
+                src={selectedProject.image}
+                alt={`${selectedProject.name} live store`}
+                className="dialog-cover-img"
+              />
+            </div>
+          )}
+          {selectedProject.metric && (
+            <div className="dialog-metric-pill">
+              <span className="metric-dot" aria-hidden="true" />
+              <span>Key Result: <strong>{selectedProject.metric}</strong></span>
+            </div>
+          )}
+          <h2 id="project-dialog-title">{selectedProject.name}</h2>
+          <span className="dialog-category">{selectedProject.category} · {selectedProject.industry}</span>
+          <p className="dialog-summary">{selectedProject.summary}</p>
+          <h3>My contribution</h3>
+          <ul>
+            {selectedProject.details.map(detail => <li key={detail}>{detail}</li>)}
+          </ul>
+          <div className="project-tags">
+            {selectedProject.tags.map(tag => <span key={tag}>{tag}</span>)}
+          </div>
+          <div className="dialog-actions">
+            {selectedProject.url && (
+              <a className="button button-primary" href={selectedProject.url} target="_blank" rel="noreferrer">
+                Visit live store <Icon name="diagonal" />
+              </a>
+            )}
+            <a
+              className="button button-whatsapp"
+              href={`https://wa.me/918120805721?text=${encodeURIComponent(`Hi Lokesh, I saw your work on ${selectedProject.name} and would like to discuss a similar Shopify project.`)}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Icon name="whatsapp" /> Discuss on WhatsApp
+            </a>
+            <a
+              className="button button-outline"
+              href={`mailto:${email}?subject=${encodeURIComponent(`Let’s discuss a project like ${selectedProject.name}`)}`}
+            >
+              Email inquiry <Icon name="arrow" />
+            </a>
+          </div>
+        </div>
+      )}
     </dialog>
 
   </>;

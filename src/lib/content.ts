@@ -10,6 +10,7 @@ export const projects = [
   {
     name: "Milano Wigs Collection", short: "Milano", category: "Shopify", industry: "Luxury & beauty · USA", style: "milano",
     metric: "+38% Mobile Conversions",
+    image: "/projects/milano.webp",
     url: "https://milanowigs.com/",
     summary: "A bespoke shopping experience for a luxury wigs collection.",
     tags: ["Custom theme", "Product filters", "Mobile-first"],
@@ -18,6 +19,7 @@ export const projects = [
   {
     name: "Proteger Daily", short: "Proteger", category: "Shopify", industry: "Skincare", style: "proteger",
     metric: "90+ Mobile PageSpeed · Zero Lag",
+    image: "/projects/proteger.webp",
     url: "https://www.protegerdaily.com/",
     summary: "Conversion-focused product pages with custom Liquid sections.",
     tags: ["Liquid sections", "Product layouts", "App integrations"],
@@ -26,6 +28,7 @@ export const projects = [
   {
     name: "As Of Today", short: "as of today", category: "Shopify", industry: "Skincare", style: "today",
     metric: "Top 5% Global Shopify Store Speed",
+    image: "/projects/today.webp",
     url: "https://asoftoday.com/",
     summary: "A minimal storefront, built around speed and simplicity.",
     tags: ["Liquid theme", "Responsive design", "SEO"],
@@ -34,6 +37,7 @@ export const projects = [
   {
     name: "YourTechRiders", short: "YourTechRiders", category: "WordPress", industry: "Corporate", style: "riders",
     metric: "30% Faster Turnaround with Reusable Code",
+    image: "/projects/riders.webp",
     url: "https://yourtechriders.com/",
     summary: "A complete corporate portfolio with reusable components.",
     tags: ["WordPress", "Reusable components", "Performance"],
@@ -42,6 +46,7 @@ export const projects = [
   {
     name: "Inspire Communities", short: "Inspire", category: "WordPress", industry: "Real Estate & Housing · USA", style: "inspire",
     metric: "Nationwide Geospatial Map Locator",
+    image: "/projects/inspire.webp",
     url: "https://inspirecommunities.com/",
     summary: "Custom interactive map locator and dynamic location-based search.",
     tags: ["Custom PHP", "Maps & Geolocation", "Interactive Locator"],
@@ -54,6 +59,7 @@ export const projects = [
   {
     name: "It's My Wall", short: "It's My Wall", category: "Shopify", industry: "Luxury Wallpaper & Decor · Houston, TX", style: "mywall",
     metric: "1,500+ SKUs · Custom Roll Calculator",
+    image: "/projects/mywall.webp",
     url: "https://www.itsmywallstore.com/",
     summary: "Custom Shopify store built from scratch with an interactive wallpaper roll calculator.",
     tags: ["Built from scratch", "Measurement calculator", "Custom Liquid"],
@@ -67,6 +73,7 @@ export const projects = [
   {
     name: "Vita Living", short: "Vita Living", category: "Shopify", industry: "Health & Holistic Wellness · USA", style: "vitaliving",
     metric: "200+ Brands · Sub-Second Catalog Search",
+    image: "/projects/vitaliving.webp",
     url: "https://www.vitaliving.com/",
     summary: "Custom Shopify wellness storefront built from scratch with smart Liquid product recommendations.",
     tags: ["Built from scratch", "Product recommendations", "Custom Liquid"],
@@ -80,6 +87,7 @@ export const projects = [
   {
     name: "The Pink Pigs", short: "Pink Pigs", category: "Shopify", industry: "Mission-Driven Boutique · Florida, USA", style: "pinkpigs",
     metric: "100% App & Donation Flow Sync",
+    image: "/projects/pinkpigs.webp",
     url: "https://www.thepinkpigs.com/",
     summary: "Purpose-driven Shopify boutique supporting animal rescue with custom collections and seamless app integrations.",
     tags: ["Theme customization", "App integrations", "Ecommerce optimization"],
@@ -93,6 +101,7 @@ export const projects = [
   {
     name: "Eve's Disclosure", short: "Eve's", category: "Shopify", industry: "Eco-Intimates & Wellness · New York, USA", style: "eves",
     metric: "+28% Average Order Value (AOV)",
+    image: "/projects/eves.webp",
     url: "https://evesdisclosure.com/",
     summary: "A sleek, high-conversion Shopify DTC storefront for a New York eco-friendly intimates brand.",
     tags: ["Custom Liquid", "DTC Storefront", "Mobile-first"],
@@ -106,6 +115,7 @@ export const projects = [
   {
     name: "Little Bones Clinic", short: "Little Bones", category: "WordPress", industry: "Pediatric Healthcare · Indore, India", style: "littlebones",
     metric: "+60% Online Patient Inquiries",
+    image: "/projects/littlebones.webp",
     url: "https://littlebones.org/",
     summary: "Custom WordPress clinic website built from scratch with Elementor for a pediatric orthopedic specialist.",
     tags: ["WordPress", "Elementor", "Healthcare UX"],
