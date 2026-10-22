@@ -123,9 +123,9 @@ p { color: var(--muted); }
 .filters button[aria-pressed="true"] { color: var(--accent); background: #233024; border-color: #48573b; }
 .project-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 30px; row-gap: 43px; }
 .project { min-width: 0; }
-.project-cover { width: 100%; height: 292px; border: 0; border-radius: 12px; position: relative; display: flex; flex-direction: column; justify-content: space-between; text-align: left; padding: 23px 25px 18px; overflow: hidden; transition: background .2s, border-color .2s, box-shadow .25s; cursor: pointer; }
-.project-cover.has-image { padding: 0; background: #141c28; border: 1px solid #2d3b4e; }
-.project-cover.has-image:hover { border-color: #4b5d77; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45); }
+.project-cover { width: 100%; height: 292px; border: 0; border-radius: 12px; position: relative; display: flex; flex-direction: column; justify-content: space-between; text-align: left; padding: 23px 25px 18px; overflow: hidden; transition: background .2s, border-color .2s; cursor: pointer; box-shadow: none; }
+.project-cover.has-image { padding: 0; background: #141c28; border: 1px solid #2d3b4e; box-shadow: none; }
+.project-cover.has-image:hover { border-color: #4b5d77; box-shadow: none; }
 .project-cover-media { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 12px; }
 .project-cover-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .5s cubic-bezier(.16, 1, .3, 1), filter .35s; display: block; filter: brightness(.88) contrast(1.04); }
 .project-cover:hover .project-cover-img { transform: scale(1.05); filter: brightness(1); }
@@ -379,10 +379,10 @@ p { color: var(--muted); }
 .floating-whatsapp-pulse { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #061c0f; flex-shrink: 0; }
 .floating-whatsapp-pulse::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid #061c0f; opacity: 0.75; animation: pulse-ring 1.8s cubic-bezier(0.24, 0, 0.38, 1) infinite; }
 @keyframes pulse-ring { 0% { transform: scale(0.6); opacity: 0.9; } 100% { transform: scale(2.4); opacity: 0; } }
-.project-dialog { background: var(--surface); color: var(--foreground); border: 1px solid #445066; border-radius: 16px; padding: 0; max-width: 600px; width: calc(100% - 40px); max-height: calc(100dvh - 64px); }
+.project-dialog { background: var(--surface); color: var(--foreground); border: 1px solid #445066; border-radius: 16px; padding: 0; max-width: 600px; width: calc(100% - 40px); max-height: calc(100dvh - 64px); box-shadow: none; }
 .project-dialog::backdrop { background: rgb(5 10 17 / 85%); }
 .dialog-inner { padding: 44px; position: relative; }
-.dialog-cover-media { width: 100%; height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 22px; border: 1px solid #324053; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); }
+.dialog-cover-media { width: 100%; height: 220px; border-radius: 10px; overflow: hidden; margin-bottom: 22px; border: 1px solid #324053; box-shadow: none; }
 .dialog-cover-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
 .dialog-close { position: absolute; top: 13px; right: 13px; border: 0; background: none; color: var(--muted); padding: 10px; z-index: 2; }
 .dialog-close:hover { color: var(--accent); }
