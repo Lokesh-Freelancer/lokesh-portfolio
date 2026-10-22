@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/manrope";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { email, linkedin, medium } from "@/lib/content";
 
 const siteUrl = "https://dev-lokeshprajapat.vercel.app";
@@ -126,7 +128,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
