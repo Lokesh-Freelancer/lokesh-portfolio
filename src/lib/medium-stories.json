@@ -4,8 +4,8 @@
     "link": "https://lokesh-prajapati.medium.com/shopify-liquid-tutorial-for-developers-objects-tags-filters-real-world-examples-68e0a51db21e",
     "pubDate": "23 Oct 2026",
     "categories": [
-      "programming",
-      "javascript"
+      "Shopify Liquid",
+      "JavaScript"
     ],
     "snippet": "Learn Shopify Liquid syntax with practical code examples covering objects, tags, filters, product variants, metafields, snippets, and common Shopify theme devel..."
   },
@@ -14,8 +14,8 @@
     "link": "https://javascript.plainenglish.io/shopify-liquid-tutorial-how-shopify-themes-render-html-with-javascript-and-apis-50b2f7b40f86",
     "pubDate": "17 Oct 2026",
     "categories": [
-      "web-development",
-      "ecommerce"
+      "Shopify",
+      "Ecommerce"
     ],
     "snippet": "Understanding Shopify’s rendering pipeline, debugging common theme issues, and building dynamic storefront experiences without unnecessary page reloads. If you ..."
   },
@@ -24,8 +24,8 @@
     "link": "https://javascript.plainenglish.io/will-ai-replace-developers-a-brutally-honest-5-year-forecast-2026-2031-ce579886bce0",
     "pubDate": "1 Dec 2025",
     "categories": [
-      "developer",
-      "programming"
+      "AI Tools",
+      "AI & Tech"
     ],
     "snippet": "AI is evolving faster than any technology in human history. Developers are the first ones feeling the impact. Will AI Replace Developers? A Brutally Honest 5-Ye..."
   },
@@ -34,8 +34,8 @@
     "link": "https://javascript.plainenglish.io/use-git-like-a-senior-engineer-the-only-guide-youll-ever-need-d245204ddd33",
     "pubDate": "1 Dec 2025",
     "categories": [
-      "programming",
-      "github"
+      "GitHub",
+      "Git & Workflow"
     ],
     "snippet": "Git is one of those tools every developer uses — but only a few truly master . Senior engineers don’t just “push and pull”; they use Git strategically to mainta..."
   },
@@ -44,8 +44,8 @@
     "link": "https://javascript.plainenglish.io/10-ultimate-javascript-clean-code-patterns-every-developer-needs-to-know-f4acad6e2a25",
     "pubDate": "18 Sep 2025",
     "categories": [
-      "programming",
-      "clean-code"
+      "JavaScript",
+      "Clean Code"
     ],
     "snippet": "10 Ultimate JavaScript Clean Code Patterns Every Developer Needs to Know — By Lokesh Prajapati Most developers can make code work. But great developers write co..."
   },
@@ -54,8 +54,8 @@
     "link": "https://javascript.plainenglish.io/day-44-the-ultimate-guide-to-building-deploying-with-vercel-for-react-next-js-devs-278fc7258ab9",
     "pubDate": "18 Jun 2025",
     "categories": [
-      "nextjs",
-      "deployment"
+      "Next.js",
+      "React"
     ],
     "snippet": "Series: 45 Days of React + Next.js (JSX) Focus Today: Learn how to build and deploy your full-fledged React + Next.js project using Vercel , the platform built ..."
   }
