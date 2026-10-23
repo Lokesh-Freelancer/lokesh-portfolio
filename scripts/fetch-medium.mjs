@@ -31,12 +31,11 @@ async function fetchMediumStories() {
       const link = rawLink.split("?")[0];
 
       const pubDateStr = it.match(/<pubDate>(.*?)<\/pubDate>/)?.[1] || "";
-      const pubDate = pubDateStr
-        ? new Date(pubDateStr).toLocaleDateString("en-US", {
-            month: "short",
-            year: "numeric",
-          })
-        : "";
+      let pubDate = "";
+      if (pubDateStr) {
+        const d = new Date(pubDateStr);
+        pubDate = `${d.getDate()} ${d.toLocaleDateString("en-US", { month: "short" })} ${d.getFullYear()}`;
+      }
 
       const categories = Array.from(
         it.matchAll(/<category><!\[CDATA\[(.*?)\]\]><\/category>/g)
