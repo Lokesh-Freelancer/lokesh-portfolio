@@ -128,6 +128,61 @@ export const projects = [
   },
 ];
 
+export interface ProcessStep {
+  step: string;
+  phase: string;
+  title: string;
+  tagline: string;
+  points: string[];
+}
+
+export const processSteps: ProcessStep[] = [
+  {
+    step: "01",
+    phase: "Discovery & Strategy",
+    title: "Understanding Goals & Scope",
+    tagline: "Clarity before a single line of code is written.",
+    points: [
+      "Deep dive into your store goals, audience, and key conversion blockers.",
+      "Thorough review of your Figma designs, catalog requirements, and apps.",
+      "Clear milestone roadmap with fixed timelines and zero surprise costs."
+    ],
+  },
+  {
+    step: "02",
+    phase: "Architecture & Code",
+    title: "Modular Custom Liquid",
+    tagline: "Custom storefront sections your team can actually manage.",
+    points: [
+      "Tailored Shopify theme build from scratch or high-converting custom sections.",
+      "Intuitive schema settings — update text, banners, and promos without touching code.",
+      "Clean, scalable Liquid code following official Shopify Theme architecture standards."
+    ],
+  },
+  {
+    step: "03",
+    phase: "Performance & QA",
+    title: "Speed, Mobile & Checkout Testing",
+    tagline: "Sub-second load times and zero mobile friction.",
+    points: [
+      "Rigorous PageSpeed optimization targeting 90+ mobile scores with clean scripts.",
+      "Pixel-perfect cross-browser testing across iPhone, Android, Safari, and Chrome.",
+      "End-to-end testing of product variants, cart drawers, currency, and checkout."
+    ],
+  },
+  {
+    step: "04",
+    phase: "Launch & Support",
+    title: "Zero-Downtime Handover",
+    tagline: "Smooth deployment with 14 days of dedicated peace of mind.",
+    points: [
+      "Zero-downtime live rollout with full SEO preservation and domain transition.",
+      "Personalized Loom video walkthrough showing your team how to edit the store.",
+      "14 days of dedicated post-launch warranty support for instant tweaks and fixes."
+    ],
+  },
+];
+
 export const expertise = [
   { name: "Shopify development", description: "Stores shaped around your brand, from the theme to the checkout journey.", skills: ["Liquid", "Custom themes", "Shopify schema", "App integrations", "Store migration"] },
   { name: "Frontend & performance", description: "Responsive interfaces that feel considered on every screen.", skills: ["HTML5", "CSS3", "JavaScript ES6+", "jQuery", "AJAX", "Mobile-first design", "SEO"] },

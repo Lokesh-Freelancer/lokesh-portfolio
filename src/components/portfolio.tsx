@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { email, phone, phoneFormatted, whatsappUrl, linkedin, medium, projects, expertise, experience, initialStories, mediumFeedUrl, reviews, faqs, type MediumStory, type Review, type FAQItem } from "@/lib/content";
+import { email, phone, phoneFormatted, whatsappUrl, linkedin, medium, projects, expertise, experience, initialStories, mediumFeedUrl, reviews, faqs, processSteps, type MediumStory, type Review, type FAQItem } from "@/lib/content";
 import { ProjectInquiryForm } from "./inquiry-form";
 
 type IconName = "arrow" | "diagonal" | "download" | "mail" | "location" | "close" | "menu" | "copy" | "check" | "code" | "star" | "plus" | "minus" | "whatsapp";
@@ -113,6 +113,7 @@ export default function Portfolio() {
   const nav = [
     { label: "Work", id: "work" },
     { label: "Reviews", id: "reviews" },
+    { label: "Process", id: "process" },
     { label: "Writing", id: "writing" },
     { label: "Expertise", id: "expertise" },
     { label: "Experience", id: "experience" },
@@ -297,6 +298,39 @@ export default function Portfolio() {
         </div>
       </section>
 
+      <section className="process-section section container" id="process" aria-labelledby="process-heading">
+        <div className="section-heading">
+          <div>
+            <div className="trust-pill" role="status">
+              <span className="trust-dot" aria-hidden="true" />
+              <span>Development Workflow</span>
+            </div>
+            <h2 id="process-heading">How I work<span>.</span></h2>
+            <p>A proven, zero-stress roadmap from discovery to launch.</p>
+          </div>
+          <a className="button button-outline" href="#contact">Start a project <Icon name="arrow" /></a>
+        </div>
+        <div className="process-grid">
+          {processSteps.map(item => (
+            <article className="process-card" key={item.step}>
+              <div className="process-card-header">
+                <span className="process-step-num">{item.step}</span>
+                <span className="process-phase-pill">{item.phase}</span>
+              </div>
+              <h3 className="process-card-title">{item.title}</h3>
+              <p className="process-card-tagline">{item.tagline}</p>
+              <ul className="process-card-list">
+                {item.points.map((point, idx) => (
+                  <li key={idx}>
+                    <span className="process-check-dot" aria-hidden="true" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <section className="writing-section section container" id="writing" aria-labelledby="writing-heading">
         <div className="section-heading">
