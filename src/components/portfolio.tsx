@@ -135,7 +135,26 @@ export default function Portfolio() {
         <ThemeDemo />
       </section>
 
-      <div className="container"><div className="proof-strip"><p><strong>4+</strong> years in Shopify development</p><p><strong>50+</strong> stores delivered globally</p><p><strong>30%</strong> less development time with reusable components</p></div></div>
+      <div className="container">
+        <div className="proof-strip" aria-label="Key delivery metrics and business impact">
+          <div className="proof-item">
+            <strong>30+</strong>
+            <span>Stores launched &amp; scaled</span>
+          </div>
+          <div className="proof-item">
+            <strong>90+</strong>
+            <span>Average mobile PageSpeed</span>
+          </div>
+          <div className="proof-item">
+            <strong>100%</strong>
+            <span>On-time milestone delivery</span>
+          </div>
+          <div className="proof-item">
+            <strong>$0</strong>
+            <span>Surprise invoices &middot; Fixed scope</span>
+          </div>
+        </div>
+      </div>
 
       <section className="work-section container section" id="work" aria-labelledby="work-heading">
         <div className="section-heading"><div><h2 id="work-heading">Selected work<span>.</span></h2><p>A few brands I’ve helped bring to life online.</p></div><div className="filters" aria-label="Filter projects">{["All work", "Shopify", "WordPress"].map(item => <button key={item} aria-pressed={filter === item} onClick={() => setFilter(item)}>{item}</button>)}</div></div>
