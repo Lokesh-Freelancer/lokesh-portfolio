@@ -77,7 +77,7 @@ export default function Portfolio() {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 8000);
 
-    fetch("/api/medium/", { signal: controller.signal })
+    fetch(`/api/medium/?_t=${Date.now()}`, { cache: "no-store", signal: controller.signal })
       .then(res => (res.ok ? res.json() : Promise.reject()))
       .then((data: MediumStory[]) => {
         if (!isMounted || !Array.isArray(data) || data.length === 0) return;
