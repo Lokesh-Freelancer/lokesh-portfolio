@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Lokesh Prajapat",
   },
   description:
-    "Senior Shopify Web Developer with 4+ years of experience and 50+ stores delivered globally. Specializing in custom Liquid themes, store migrations, performance optimization, and bespoke ecommerce storefronts.",
+    "Senior Shopify Web Developer with 5+ years of experience and 50+ stores delivered globally. Specializing in custom Liquid themes, store migrations, performance optimization, and bespoke ecommerce storefronts.",
   keywords: [
     "Shopify Developer",
     "Senior Shopify Developer",
@@ -50,13 +50,13 @@ export const metadata: Metadata = {
     siteName: "Lokesh Prajapat Portfolio",
     title: "Lokesh Prajapat — Thoughtful code. Better commerce.",
     description:
-      "Senior Shopify Web Developer · 4+ years experience · 50+ stores delivered. Custom Liquid themes, seamless migrations, and high-performance ecommerce.",
+      "Senior Shopify Web Developer · 5+ years experience · 50+ stores delivered. Custom Liquid themes, seamless migrations, and high-performance ecommerce.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Lokesh Prajapat — Senior Shopify Web Developer",
     description:
-      "4+ years experience · 50+ Shopify stores delivered · Custom Liquid themes & performance optimization.",
+      "5+ years experience · 50+ Shopify stores delivered · Custom Liquid themes & performance optimization.",
   },
   robots: {
     index: true,
@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         email: `mailto:${email}`,
         telephone: "+918120805721",
         description:
-          "Senior Shopify Web Developer with 4+ years of experience delivering 50+ ecommerce storefronts. Expert in Shopify Liquid, theme development, and speed optimization.",
+          "Senior Shopify Web Developer with 5+ years of experience delivering 50+ ecommerce storefronts. Expert in Shopify Liquid, theme development, and speed optimization.",
         knowsAbout: [
           "Shopify",
           "Shopify Theme Development",

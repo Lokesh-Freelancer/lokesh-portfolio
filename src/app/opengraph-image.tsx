@@ -131,7 +131,7 @@ export default function Image() {
         >
           <div style={{ display: "flex", alignItems: "center", gap: "28px" }}>
             <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
-              <span style={{ fontSize: "28px", fontWeight: 800, color: "#d4f878" }}>4+</span>
+              <span style={{ fontSize: "28px", fontWeight: 800, color: "#d4f878" }}>5+</span>
               <span style={{ fontSize: "16px", color: "#9ca3af" }}>Years Experience</span>
             </div>
             <div style={{ width: "1px", height: "24px", backgroundColor: "rgba(255,255,255,0.15)" }} />

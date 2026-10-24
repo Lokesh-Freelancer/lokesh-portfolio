@@ -15,7 +15,7 @@ Assumption: recruiters, ecommerce brands, and potential collaborators evaluating
 A professional personal portfolio based on the supplied resume, making experience, contributions, and contact information easy to find.
 
 ## Positioning
-Lokesh Prajapat is a Senior Shopify Web Developer based in Indore, India. The resume reports 4+ years of experience and 50+ Shopify stores delivered.
+Lokesh Prajapat is a Senior Shopify Web Developer based in Indore, India. The resume reports 5+ years of experience and 50+ Shopify stores delivered.
 
 ## Capabilities and Constraints
 Selected project details, skills, experience, education, resume download, email, phone, and LinkedIn. Do not invent project URLs, testimonials, current availability, or results beyond the resume.
