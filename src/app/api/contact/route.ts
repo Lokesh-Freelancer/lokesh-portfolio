@@ -1,16 +1,86 @@
 import { NextResponse } from "next/server";
 
 interface ContactPayload {
+  mode?: "inquiry" | "audit";
   name?: string;
   email?: string;
   projectType?: string;
   budget?: string;
   message?: string;
+  storeUrl?: string;
+  contact?: string;
+  concern?: string;
+  notes?: string;
 }
 
 export async function POST(request: Request) {
   try {
     const body: ContactPayload = await request.json();
+    const mode = body.mode || "inquiry";
+
+    // Handle Free Audit Mode
+    if (mode === "audit") {
+      const storeUrl = (body.storeUrl || "").trim();
+      const contact = (body.contact || "").trim();
+      const concern = (body.concern || "General Store Health").trim();
+      const notes = (body.notes || "").trim();
+
+      if (!storeUrl) {
+        return NextResponse.json(
+          { success: false, error: "Please enter your store URL." },
+          { status: 400 }
+        );
+      }
+      if (!contact) {
+        return NextResponse.json(
+          { success: false, error: "Please enter your email or WhatsApp number." },
+          { status: 400 }
+        );
+      }
+
+      const auditData = {
+        storeUrl,
+        contact,
+        concern,
+        notes,
+        timestamp: new Date().toISOString(),
+      };
+
+      console.log("[New Free Store Audit Request]", auditData);
+
+      const web3formsKey = process.env.WEB3FORMS_ACCESS_KEY || "6d6f4bc4-52d0-4206-bc7e-1db790d7954f";
+      if (web3formsKey) {
+        try {
+          await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              access_key: web3formsKey,
+              subject: `⚡ Free Shopify Store Audit Request: ${storeUrl}`,
+              from_name: "Lokesh Portfolio - Audit Request",
+              to_email: "lokeshprajapati000@gmail.com",
+              "Store URL": storeUrl,
+              "Contact (Email/WhatsApp)": contact,
+              "Main Focus": concern,
+              "Notes": notes || "None",
+              message: `New Free Shopify Store Audit Request\n\nStore URL: ${storeUrl}\nContact: ${contact}\nMain Concern: ${concern}\nNotes: ${notes || "None"}`,
+            }),
+          });
+        } catch (fwErr) {
+          console.error("[Web3Forms Audit Forwarding Error]", fwErr);
+        }
+      }
+
+      return NextResponse.json({
+        success: true,
+        message: `Thank you! I will review ${storeUrl} and send your free audit to ${contact} within 24h.`,
+      });
+    }
+
+    // Handle Project Inquiry Mode
     const { name, email, projectType, budget, message } = body;
 
     // Basic validation
