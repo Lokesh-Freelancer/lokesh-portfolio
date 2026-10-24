@@ -58,7 +58,7 @@ export default function Image() {
                 lokesh<span style={{ color: "#d4f878" }}>.</span>
               </span>
               <span style={{ fontSize: "14px", color: "#9ca3af", letterSpacing: "0.5px" }}>
-                dev-lokeshprajapat.vercel.app
+                lokesh-prajapati.vercel.app
               </span>
             </div>
           </div>

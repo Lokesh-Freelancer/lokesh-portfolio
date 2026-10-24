@@ -5,7 +5,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { email, linkedin, medium } from "@/lib/content";
 
-const siteUrl = "https://dev-lokeshprajapat.vercel.app";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null) ||
+  "https://lokesh-prajapati.vercel.app";
 
 export const viewport: Viewport = {
   themeColor: "#101622",
